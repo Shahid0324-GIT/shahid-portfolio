@@ -5,8 +5,8 @@ import { motion } from "framer-motion";
 
 const NAMES = [
   "MOHAMMED JAMEEL SHAHID",
-  "モハメド・ジャミール・シャヒド",
   "محمد جميل شاهد",
+  "モハメド・ジャミール・シャヒド",
 ];
 
 const CHARS =

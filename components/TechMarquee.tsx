@@ -18,7 +18,7 @@ export default function TechMarquee() {
       <div className="absolute right-0 top-0 z-10 h-full w-32 bg-linear-to-l from-background to-transparent pointer-events-none" />
 
       <motion.div
-        className="flex min-w-full w-max  mt-12 md:mt-0 "
+        className="flex min-w-full w-max mt-12 md:mt-0"
         animate={{ x: [0, "-50%"] }}
         transition={{
           repeat: Infinity,
@@ -31,7 +31,10 @@ export default function TechMarquee() {
             key={i}
             className="group relative mx-8 flex items-center justify-center cursor-help"
           >
-            <skill.icon className="h-12 w-12 text-secondary transition-all duration-300 group-hover:scale-110 group-hover:text-primary group-hover:filter-none grayscale group-hover:grayscale-0" />
+            {/* FIX: Changed 'text-secondary' to 'text-gray-500 dark:text-gray-400' 
+                This increases contrast/opacity making them much easier to see.
+            */}
+            <skill.icon className="h-12 w-12 text-gray-500 dark:text-gray-400 transition-all duration-300 group-hover:scale-110 group-hover:text-primary group-hover:filter-none grayscale group-hover:grayscale-0" />
 
             <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-[10px] font-mono uppercase opacity-0 transition-opacity group-hover:opacity-100 text-foreground">
               {skill.name}

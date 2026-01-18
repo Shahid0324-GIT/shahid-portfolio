@@ -20,12 +20,9 @@ export default function Hero() {
           });
           setIsUserLoc(true);
         },
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         (error) => {
-          const msg =
-            error instanceof Error
-              ? error.message
-              : "Loc access denied or redundant on mobile";
-          console.log(msg);
+          console.log("Loc access denied or redundant on mobile");
         },
       );
     }
@@ -113,38 +110,48 @@ export default function Hero() {
           transition={{ duration: 1, delay: 0.6 }}
           className="relative hidden h-full min-h-125 w-full items-center justify-end lg:flex lg:translate-x-16 order-1 lg:order-2"
         >
+          {/* ORBIT 1: Dark orbits in light mode */}
           <motion.div
             animate={{ rotate: 360 }}
             transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-            className="absolute h-125 w-125 rounded-full border border-dashed border-secondary/30 opacity-50"
+            className="absolute h-125 w-125 rounded-full border-2 border-dashed border-gray-800/80 dark:border-white/20"
           >
-            <div className="absolute top-0 left-1/2 h-4 w-4 -translate-x-1/2 rounded-full bg-secondary" />
-            <div className="absolute bottom-1/4 right-[10%] h-2 w-2 rounded-full bg-secondary" />
+            {/* Planets: Vibrant colors - aligned on orbit */}
+            <div className="absolute top-0 left-1/2 h-5 w-5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500 dark:bg-blue-400 shadow-lg" />
+            <div className="absolute bottom-0 right-1/2 h-3 w-3 translate-x-1/2 translate-y-1/2 rounded-full bg-purple-500 dark:bg-purple-400 shadow-md" />
           </motion.div>
 
+          {/* ORBIT 2: Dark orbits in light mode */}
           <motion.div
             animate={{ rotate: -360 }}
             transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-            className="absolute h-87.5 w-87.5 rounded-full border border-secondary/40"
+            className="absolute h-87.5 w-87.5 rounded-full border-2 border-gray-900/80 dark:border-white/30"
           >
-            <div className="absolute top-1/2 left-0 h-6 w-1 -translate-y-1/2 bg-primary" />
-            <div className="absolute top-1/2 right-0 h-2 w-2 -translate-y-1/2 bg-foreground rounded-full" />
+            <div className="absolute top-1/2 left-0 h-6 w-1 -translate-y-1/2 -translate-x-1/2 bg-primary shadow-md" />
+            <div className="absolute top-1/2 right-0 h-3 w-3 -translate-y-1/2 translate-x-1/2 bg-orange-500 dark:bg-orange-400 rounded-full shadow-md" />
           </motion.div>
+
+          {/* ORBIT 3: Inner ring dark in light mode */}
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+            className="absolute h-50 w-50 rounded-full border-2 border-gray-800/80 dark:border-white/20 border-t-primary"
+          />
 
           <motion.div
             animate={{ rotate: 360 }}
             transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-            className="absolute h-50 w-50 rounded-full border-2 border-secondary/20 border-t-primary/80"
+            className="absolute h-50 w-50 rounded-full border-2 border-gray-900 dark:border-white/20 border-t-primary"
           />
 
-          <div className="absolute z-10 flex flex-col items-center justify-center rounded-full bg-background/50 p-6 backdrop-blur-md border border-secondary/50">
+          <div className="absolute z-10 flex flex-col items-center justify-center rounded-full dark:bg-black p-6 border border-neutral-950 dark:border-white/20">
             <div className="mb-2 h-3 w-3 animate-pulse rounded-full bg-primary" />
 
-            <span className="font-mono text-sm font-bold text-gray-600 dark:text-gray-400 tracking-widest">
+            <span className="font-mono text-sm font-bold text-gray-900 dark:text-gray-300 tracking-widest">
               {isUserLoc ? "USER_LOC_DETECTED" : "BASE_LOC_ACTIVE"}
             </span>
 
-            <span className="mt-1 font-mono text-2xl font-bold text-foreground">
+            <span className="mt-1 font-mono text-2xl font-bold text-gray-900 dark:text-foreground">
               {coords.lat}° N, {coords.lng}° E
             </span>
 
@@ -153,8 +160,8 @@ export default function Hero() {
             </span>
           </div>
 
-          <div className="absolute h-full w-px bg-linear-to-b from-transparent via-secondary/30 to-transparent" />
-          <div className="absolute w-full h-px bg-linear-to-r from-transparent via-secondary/30 to-transparent" />
+          <div className="absolute h-full w-px bg-linear-to-b from-transparent via-neutral-950/20 dark:via-white/10 to-transparent" />
+          <div className="absolute w-full h-px bg-linear-to-r from-transparent via-neutral-950/20 dark:via-white/10 to-transparent" />
         </motion.div>
       </div>
 
