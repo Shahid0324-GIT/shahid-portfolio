@@ -37,7 +37,7 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## 📂 Project Structure
+## Project Structure
 
 ```bash
 src/
@@ -56,7 +56,7 @@ src/
 
 ```
 
-## 🎨 Customization
+## Customization
 
 ### 1. Update Content
 
@@ -82,6 +82,6 @@ Go to `src/app/globals.css`. The entire theme is controlled by CSS variables com
 }
 ```
 
-## 📄 License
+## License
 
 MIT © [Mohammed Jameel Shahid](https://github.com/Shahid0324-GIT)
