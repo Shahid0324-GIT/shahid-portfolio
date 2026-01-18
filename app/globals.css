@@ -1,26 +1,53 @@
 @import "tailwindcss";
 
+/* --- LIGHT MODE (TVA / RETRO) --- */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f2f0e9; /* Warm 'File Paper' White */
+  --foreground: #2d2a26; /* 'Ink' Charcoal */
+  --primary: #ea580c; /* Burnt Orange (TVA Monitor) */
+  --secondary: #e5e5e5; /* Light Gray */
+  --accent: #d97706; /* Amber */
 }
 
-@theme inline {
+/* --- DARK MODE (EVANGELION / UNIT-02) --- */
+.dark {
+  --background: #0a0a0b; /* Deep Mech Grey/Black */
+  --foreground: #ededed; /* Signal White */
+  --primary: #f97316; /* Safety Orange (Unit-02 Core) */
+  --secondary: #27272a; /* Gunmetal */
+  --accent: #22c55e; /* System Green (HUD elements) */
+}
+
+::selection {
+  background-color: var(--color-primary);
+  color: black;
+}
+
+@theme {
+  /* This maps Tailwind utilities (bg-background, text-primary) to our CSS variables */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Global Resets */
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  transition:
+    background-color 0.5s ease,
+    color 0.5s ease; /* Smooth mode switch */
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+body::-webkit-scrollbar {
+  display: none;
 }
