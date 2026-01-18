@@ -19,7 +19,7 @@ export default function Projects() {
   return (
     <section id="projects" className="bg-background">
       <div className="flex flex-col gap-16 px-6 py-20 md:hidden">
-        <div className="absolute left-6 top-20 z-20 md:left-12 lg:left-24">
+        <div className="md-8 md:left-12">
           <h2 className="font-mono text-lg font-bold uppercase tracking-widest text-primary">
             {"/// PROJECT_ARCHIVE_2026"}
           </h2>
