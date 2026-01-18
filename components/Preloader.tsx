@@ -10,7 +10,6 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
-    // 1. Step Timer
     const stepInterval = setInterval(() => {
       setIndex((prev) => {
         if (prev === words.length - 1) {
@@ -20,7 +19,7 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
         }
         return prev + 1;
       });
-    }, 1200);
+    }, 600);
 
     return () => clearInterval(stepInterval);
   }, []);

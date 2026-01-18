@@ -4,29 +4,29 @@ import { marqueeContent } from "@/utils/constants";
 import { motion } from "framer-motion";
 
 export default function TechMarquee() {
+  const seamlessLoop = [...marqueeContent, ...marqueeContent];
+
   return (
-    <section className="relative w-full overflow-hidden bg-background py-32 md:py-44 border-t border-secondary/20">
-      {/* SYSTEM LABEL - Moved slightly down (top-10) to match the increased spacing */}
+    <section className="relative w-full overflow-hidden bg-background py-26 md:py-44 border-t border-secondary/20">
       <div className="absolute left-6 top-10 z-20 md:left-12 lg:left-24">
         <h2 className="font-mono text-lg font-bold uppercase tracking-widest text-primary">
           {"/// ENGINEERING_ARSENAL"}
         </h2>
       </div>
 
-      {/* Gradient Masks */}
       <div className="absolute left-0 top-0 z-10 h-full w-32 bg-linear-to-r from-background to-transparent pointer-events-none" />
       <div className="absolute right-0 top-0 z-10 h-full w-32 bg-linear-to-l from-background to-transparent pointer-events-none" />
 
       <motion.div
-        className="flex whitespace-nowrap"
+        className="flex min-w-full w-max"
         animate={{ x: [0, "-50%"] }}
         transition={{
           repeat: Infinity,
           ease: "linear",
-          duration: 20,
+          duration: 35,
         }}
       >
-        {marqueeContent.map((skill, i) => (
+        {seamlessLoop.map((skill, i) => (
           <div
             key={i}
             className="group relative mx-8 flex items-center justify-center cursor-help"

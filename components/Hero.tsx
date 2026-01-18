@@ -9,7 +9,9 @@ export default function Hero() {
   const [isUserLoc, setIsUserLoc] = useState(false);
 
   useEffect(() => {
-    if ("geolocation" in navigator) {
+    const isLargeScreen = window.matchMedia("(min-width: 1024px)").matches;
+
+    if (isLargeScreen && "geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           setCoords({
@@ -20,9 +22,9 @@ export default function Hero() {
         },
         (error) => {
           const msg =
-            error instanceof GeolocationPositionError
+            error instanceof Error
               ? error.message
-              : "Loc access denied, using base coords";
+              : "Loc access denied or redundant on mobile";
           console.log(msg);
         },
       );

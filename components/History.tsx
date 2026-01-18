@@ -17,7 +17,6 @@ export default function History() {
       />
 
       <div className="relative z-10 mx-auto">
-        {/* SECTION HEADER */}
         <div className="mb-16 flex items-end justify-between border-b border-secondary pb-6">
           <h2 className="font-sans text-4xl font-bold uppercase tracking-tighter md:text-6xl">
             Experience <span className="text-primary">Log</span>
@@ -27,9 +26,7 @@ export default function History() {
           </span>
         </div>
 
-        {/* TIMELINE CONTAINER */}
         <div className="relative space-y-12 pl-8 md:pl-0">
-          {/* The Vertical Line (Desktop only) */}
           <div className="absolute left-0 top-0 bottom-0 hidden w-px bg-secondary md:left-1/2 md:block" />
 
           {WORK.map((job, index) => (
@@ -43,12 +40,10 @@ export default function History() {
                 index % 2 === 0 ? "md:text-right" : "md:flex-row-reverse"
               }`}
             >
-              {/* Timeline Dot (Center) */}
               <div className="absolute -left-9.25 top-0 flex h-4 w-4 items-center justify-center rounded-full border border-secondary bg-background md:left-1/2 md:-translate-x-1/2">
                 <div className="h-2 w-2 rounded-full bg-primary" />
               </div>
 
-              {/* Content Side (50% width) */}
               <div className="flex-1">
                 <div className="group relative border border-secondary bg-secondary/5 p-6 transition-colors hover:border-primary/50">
                   <span className="mb-2 block font-mono text-lg text-primary">
@@ -63,31 +58,42 @@ export default function History() {
                   </p>
 
                   <ul
-                    className={`space-y-2 font-mono text-lg text-gray-500 ${
+                    className={`space-y-2 font-mono text-lg text-gray-500 flex flex-col items-start ${
                       index % 2 === 0 ? "md:items-end" : "md:items-start"
-                    } flex flex-col`}
+                    }`}
                   >
                     {job.achievements.map((item, i) => (
-                      <li key={i} className="flex items-center gap-2">
-                        {index % 2 !== 0 && (
-                          <span className="text-primary">{">"}</span>
-                        )}
+                      <li
+                        key={i}
+                        className="flex items-center gap-2 text-left md:text-inherit"
+                      >
+                        <span className="block md:hidden text-primary">
+                          {">"}
+                        </span>
+
+                        <span className="hidden md:block">
+                          {index % 2 !== 0 && (
+                            <span className="text-primary">{"> "}</span>
+                          )}
+                        </span>
+
                         {item}
-                        {index % 2 === 0 && (
-                          <span className="text-primary">{"<"}</span>
-                        )}
+
+                        <span className="hidden md:block">
+                          {index % 2 === 0 && (
+                            <span className="text-primary">{" <"}</span>
+                          )}
+                        </span>
                       </li>
                     ))}
                   </ul>
                 </div>
               </div>
 
-              {/* Empty Space for the other side of the timeline */}
               <div className="flex-1" />
             </motion.div>
           ))}
         </div>
-
         {/* --- CONTACT FOOTER --- */}
         <motion.div
           initial={{ opacity: 0 }}
@@ -103,7 +109,7 @@ export default function History() {
               </h2>
             </div>
 
-            <div className="flex flex-col gap-4 text-right">
+            <div className="flex flex-col gap-4 items-start md:items-end md:text-right w-full md:w-auto">
               <a
                 href={`mailto:${DATA.email}`}
                 className="group flex items-center gap-4 text-xl font-bold transition-colors hover:text-primary"
@@ -113,9 +119,9 @@ export default function History() {
                   ↗
                 </span>
               </a>
-              <div className="flex justify-end gap-6 font-mono text-lg text-foreground/50">
+              <div className="flex flex-wrap gap-6 font-mono text-lg text-foreground/50 md:justify-end">
                 <a
-                  href="https://linkedin.com"
+                  href="https://www.linkedin.com/in/mohammed-shahid1/"
                   className="hover:text-primary transition-colors"
                 >
                   <div className="flex gap-x-2 items-center">
@@ -124,7 +130,7 @@ export default function History() {
                   </div>
                 </a>
                 <a
-                  href="https://github.com"
+                  href="https://github.com/Shahid0324-GIT"
                   className="hover:text-primary transition-colors"
                 >
                   <div className="flex gap-x-2 items-center">
