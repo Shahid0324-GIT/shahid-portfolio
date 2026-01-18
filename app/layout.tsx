@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     title: "Mohammed Jameel Shahid | Portfolio",
     description:
       "Building minimalist, high-performance web systems with Next.js & Python.",
-    url: "https://your-portfolio-url.com",
+    url: "https://shahid-portfolio-coral.vercel.app",
     siteName: "Mohammed Jameel Shahid Portfolio",
     images: [
       {
