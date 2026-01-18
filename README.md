@@ -1,36 +1,87 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio 2026 | Minimalist System Architecture
+
+> A high-performance, engineering-first portfolio built with **Next.js 16**, **Bun**, and **Tailwind CSS v4**. Designed with an "Evangelion / TVA" aesthetic, featuring a sticky horizontal scroll, tri-lingual system boot sequence, and raw semantic HTML.
+
+![Project Banner](./public/landing.png)
+
+## Tech Stack
+
+- **Runtime:** [Bun](https://bun.sh) (Blazing fast package manager & runtime)
+- **Framework:** [Next.js 16](https://nextjs.org) (App Router)
+- **Styling:** [Tailwind CSS v4](https://tailwindcss.com) (CSS Variables, No Config)
+- **Animation:** [Framer Motion](https://www.framer.com/motion/) (Complex orchestrations)
+- **Icons:** [React Icons](https://react-icons.github.io/react-icons/) (Simple Icons set)
+
+## Features
+
+- **System Boot Loader:** A cinematic, tri-lingual (EN/JP/AR) loading sequence that "boots up" the portfolio.
+- **Sticky Horizontal Scroll:** A unique project showcase that transforms vertical scrolling into horizontal panning using `framer-motion`.
+- **Ghost Tech Marquee:** An infinite scrolling loop of tech stack logos that light up on hover.
+- **Dynamic Geolocation:** A "Head-Up Display" (HUD) in the Hero section that detects the user's real coordinates or falls back to base location.
+- **Bilingual Header:** A name glitch effect that cycles between English, Japanese (Katakana), and Arabic.
+- **Theme System:**
+  - **Light Mode:** "TVA Bureaucracy" (Warm Paper / Ink / Amber)
+  - **Dark Mode:** "Unit-02 Code" (Deep Gunmetal / Signal White / Orange)
 
 ## Getting Started
 
-First, run the development server:
+This project uses **Bun**. Ensure you have it installed.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
+# Install dependencies
+bun install
+
+# Run the development server
 bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📂 Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+src/
+├── app/
+│   ├── globals.css       # Tailwind v4 Theme Variables (Evangelion/TVA colors)
+│   ├── layout.tsx        # Root layout with Header/Theme Provider
+│   └── page.tsx          # Main entry (Loader -> Hero -> Marquee -> Projects)
+├── components/
+│   ├── Hero.tsx          # Multi-layer orbital HUD & Introduction
+│   ├── History.tsx       # Vertical timeline of experience
+│   ├── Preloader.tsx     # The "System Boot" loading screen
+│   ├── Projects.tsx      # Sticky Horizontal Scroll section
+│   └── TechMarquee.tsx   # Infinite logo loop
+├── utils/
+│   └── constants.ts      # SINGLE SOURCE OF TRUTH (Update content here)
 
-## Learn More
+```
 
-To learn more about Next.js, take a look at the following resources:
+## 🎨 Customization
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 1. Update Content
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Go to `src/utils/constants.ts`. You can change your **Name**, **Links**, **Projects**, and **Experience** there. The site will automatically update.
 
-## Deploy on Vercel
+```typescript
+export const DATA = {
+  name: "Mohammed Jameel Shahid",
+  location: "Ramagundam, Telangana",
+  // ...
+};
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 2. Change Colors
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Go to `src/app/globals.css`. The entire theme is controlled by CSS variables compatible with Tailwind v4.
+
+```css
+/* Dark Mode (Evangelion Unit-02) */
+.dark {
+  --background: #0a0a0b;
+  --primary: #f97316; /* Change this hex to swap the accent color */
+}
+```
+
+## 📄 License
+
+MIT © [Mohammed Jameel Shahid](https://github.com/Shahid0324-GIT)
