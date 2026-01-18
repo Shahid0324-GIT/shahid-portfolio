@@ -186,7 +186,7 @@ export const words = [
     ar: "جارٍ البدء...",
   },
   {
-    text: "CHECKING LOCATION: RAMAGUNDAM",
+    text: "CHECKING LOCATION: Telangana, India",
     jp: "位置を確認中: ラーマグンダム",
     ar: "التحقق من الموقع: راماغوندام",
   },

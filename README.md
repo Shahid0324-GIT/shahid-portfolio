@@ -65,7 +65,7 @@ Go to `src/utils/constants.ts`. You can change your **Name**, **Links**, **Proje
 ```typescript
 export const DATA = {
   name: "Mohammed Jameel Shahid",
-  location: "Ramagundam, Telangana",
+  location: "Telangana, India",
   // ...
 };
 ```
