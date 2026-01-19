@@ -14,12 +14,12 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
       setIndex((prev) => {
         if (prev === words.length - 1) {
           clearInterval(stepInterval);
-          setTimeout(() => setIsVisible(false), 800);
+          setTimeout(() => setIsVisible(false), 300);
           return prev;
         }
         return prev + 1;
       });
-    }, 600);
+    }, 300);
 
     return () => clearInterval(stepInterval);
   }, []);
