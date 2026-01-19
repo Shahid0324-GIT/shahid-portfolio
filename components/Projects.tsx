@@ -17,7 +17,10 @@ export default function Projects() {
   const x = useTransform(scrollYProgress, [0, 1], ["0%", "-40%"]);
 
   return (
-    <section id="projects" className="bg-background">
+    <section
+      id="projects"
+      className="bg-background border-t border-b border-secondary"
+    >
       <div className="flex flex-col gap-16 px-6 py-20 md:hidden">
         <div className="md-8 md:left-12">
           <h2 className="font-mono text-lg font-bold uppercase tracking-widest text-primary">

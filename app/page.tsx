@@ -17,9 +17,7 @@ export default function Home() {
         <div className="animate-in fade-in zoom-in-95 duration-1000">
           <Hero />
 
-          <div className="border-t border-white/10 bg-background">
-            <TechMarquee />
-          </div>
+          <TechMarquee />
 
           <Projects />
 
