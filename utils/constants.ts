@@ -153,6 +153,23 @@ export const PROJECTS = [
       "Deterministic Testing Suite",
     ],
   },
+
+  {
+    id: "reverse-ats",
+    title: "Reverse ATS Builder",
+    tech: ["Next.js 16", "Gemini AI", "Vercel AI SDK"],
+    links: {
+      live: "",
+      repo: "https://github.com/Shahid0324-GIT/reverse-ats-resume",
+    },
+    description:
+      "Intelligent tool that transforms raw text into ATS-optimized LaTeX resumes using Google Gemini.",
+    highlights: [
+      "Real-time AI Text Streaming",
+      "Stateless & Privacy-First (Local Storage)",
+      "Strict LaTeX Output Enforcement",
+    ],
+  },
 ];
 
 export const THEMES = {
