@@ -2,14 +2,13 @@ import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
-import ThemeToggle from "@/components/ThemeToggle";
-import HeaderName from "@/components/HeaderName";
+import HeaderClient from "@/components/Header";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono" });
 
 export const metadata: Metadata = {
-  title: "Mohammed Jameel Shahid | Fullstack Engineer & System Designer",
+  title: "Mohammed Jameel Shahid | Fullstack Engineer",
   description:
     "Minimalist portfolio of Mohammed Jameel Shahid. Specialized in Next.js, Python (FastAPI), and High-Performance Web Systems.",
   generator: "Next.js",
@@ -79,16 +78,7 @@ export default function RootLayout({
         className={`${inter.variable} ${mono.variable} font-sans antialiased`}
       >
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-          <header className="fixed top-0 z-50 flex w-full items-center justify-between p-6 pointer-events-none">
-            <div className="pointer-events-auto">
-              <HeaderName />
-            </div>
-
-            <div className="pointer-events-auto">
-              <ThemeToggle />
-            </div>
-          </header>
-
+          <HeaderClient />
           {children}
         </ThemeProvider>
       </body>

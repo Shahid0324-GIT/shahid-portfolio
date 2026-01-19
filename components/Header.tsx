@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useScroll } from "framer-motion";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const NAMES = [
   "MOHAMMED JAMEEL SHAHID",
@@ -12,9 +13,17 @@ const NAMES = [
 const CHARS =
   "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@#$%&アイウエオカキクケコサシスセソタチツテトابتثجحخدذرزسشصضطظعغفقكلمنهوي";
 
-export default function HeaderName() {
+export default function HeaderClient() {
   const [text, setText] = useState(NAMES[0]);
   const [langIndex, setLangIndex] = useState(0);
+  const { scrollY } = useScroll();
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    return scrollY.on("change", (latest) => {
+      setIsScrolled(latest > 20);
+    });
+  }, [scrollY]);
 
   useEffect(() => {
     const cycleLanguage = () => {
@@ -50,13 +59,21 @@ export default function HeaderName() {
   }, [langIndex]);
 
   return (
-    <motion.div
+    <motion.header
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="md:ml-6 lg:ml-18 font-mono text-sm font-bold tracking-widest text-primary mix-blend-difference"
+      className={`fixed top-0 z-50 flex w-full items-center justify-between py-3 md:px-12 px-4 pointer-events-none transition-all duration-300 ${
+        isScrolled ? "backdrop-blur-md bg-background/10" : ""
+      }`}
     >
-      <span className="mr-2 text-foreground/50">{">"}</span>
-      {text}
-    </motion.div>
+      <div className="pointer-events-auto md:ml-0 lg:ml-12 font-mono text-sm font-bold tracking-widest text-primary mix-blend-difference">
+        <span className="mr-2 text-foreground/50">{">"}</span>
+        {text}
+      </div>
+
+      <div className="pointer-events-auto">
+        <ThemeToggle />
+      </div>
+    </motion.header>
   );
 }

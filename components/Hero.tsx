@@ -39,7 +39,7 @@ export default function Hero() {
         }}
       />
 
-      <div className="z-10 grid w-full max-w-7xl grid-cols-1 items-center gap-12 lg:gap-20 lg:grid-cols-2">
+      <div className="z-10 grid w-full max-w-[80dvw] grid-cols-1 items-center gap-12 lg:gap-20 lg:grid-cols-2">
         <div className="max-w-4xl order-2 lg:order-1">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -114,7 +114,7 @@ export default function Hero() {
           <motion.div
             animate={{ rotate: 360 }}
             transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-            className="absolute h-125 w-125 rounded-full border-2 border-dashed border-gray-800/80 dark:border-white/20"
+            className="absolute size-150 rounded-full border-2 border-dashed border-secondary"
           >
             {/* Planets: Vibrant colors - aligned on orbit */}
             <div className="absolute top-0 left-1/2 h-5 w-5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500 dark:bg-blue-400 shadow-lg" />
@@ -125,7 +125,7 @@ export default function Hero() {
           <motion.div
             animate={{ rotate: -360 }}
             transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-            className="absolute h-87.5 w-87.5 rounded-full border-2 border-gray-900/80 dark:border-white/30"
+            className="absolute size-100 rounded-full border-2 border-secondary"
           >
             <div className="absolute top-1/2 left-0 h-6 w-1 -translate-y-1/2 -translate-x-1/2 bg-primary shadow-md" />
             <div className="absolute top-1/2 right-0 h-3 w-3 -translate-y-1/2 translate-x-1/2 bg-orange-500 dark:bg-orange-400 rounded-full shadow-md" />
@@ -135,13 +135,7 @@ export default function Hero() {
           <motion.div
             animate={{ rotate: 360 }}
             transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-            className="absolute h-50 w-50 rounded-full border-2 border-gray-800/80 dark:border-white/20 border-t-primary"
-          />
-
-          <motion.div
-            animate={{ rotate: 360 }}
-            transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-            className="absolute h-50 w-50 rounded-full border-2 border-gray-900 dark:border-white/20 border-t-primary"
+            className="absolute size-78 rounded-full border animate-pulse duration-200 border-green-500/50"
           />
 
           <div className="absolute z-10 flex flex-col items-center justify-center rounded-full dark:bg-black p-6 border border-neutral-950 dark:border-white/20">

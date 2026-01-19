@@ -14,12 +14,12 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
       setIndex((prev) => {
         if (prev === words.length - 1) {
           clearInterval(stepInterval);
-          setTimeout(() => setIsVisible(false), 300);
+          setTimeout(() => setIsVisible(false), 100);
           return prev;
         }
         return prev + 1;
       });
-    }, 300);
+    }, 100);
 
     return () => clearInterval(stepInterval);
   }, []);
@@ -29,15 +29,15 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
 
     const glitchInterval = setInterval(() => {
       const r = Math.random();
-      if (r < 0.33) setDisplay(currentWord.text);
-      else if (r < 0.66) setDisplay(currentWord.jp);
+      if (r < 0.13) setDisplay(currentWord.text);
+      else if (r < 0.36) setDisplay(currentWord.jp);
       else setDisplay(currentWord.ar);
-    }, 100);
+    }, 50);
 
     const stabilizeTimeout = setTimeout(() => {
       clearInterval(glitchInterval);
       setDisplay(currentWord.text);
-    }, 900);
+    }, 100);
 
     return () => {
       clearInterval(glitchInterval);
