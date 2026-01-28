@@ -138,10 +138,10 @@ export default function Hero() {
             className="absolute size-78 rounded-full border animate-pulse duration-200 border-green-500/50"
           />
 
-          <div className="absolute z-10 flex flex-col items-center justify-center rounded-full dark:bg-black p-6 border border-neutral-950 dark:border-white/20">
+          <div className="absolute z-10 flex flex-col items-center justify-center rounded-full bg-background p-6 border border-neutral-950 dark:border-white/20">
             <div className="mb-2 h-3 w-3 animate-pulse rounded-full bg-primary" />
 
-            <span className="font-mono text-sm font-bold text-gray-900 dark:text-gray-300 tracking-widest">
+            <span className="font-mono text-sm font-bold text-gray-900 dark:text-gray-500 tracking-widest">
               {isUserLoc ? "USER_LOC_DETECTED" : "BASE_LOC_ACTIVE"}
             </span>
 
