@@ -14,6 +14,13 @@ import {
   SiTestinglibrary,
   SiCypress,
   SiJest,
+  SiVuedotjs,
+  SiNuxtdotjs,
+  SiDjango,
+  SiOpenai,
+  SiClaude,
+  SiGooglegemini,
+  SiWebstorm,
 } from "react-icons/si";
 
 const calculateExperience = (startDate: Date) => {
@@ -123,6 +130,22 @@ export const PROJECTS = [
     ],
   },
   {
+    id: "gitpulse",
+    title: "GitPulse",
+    tech: ["Nuxt 4", "Python (FastAPI)", "Redis", "Docker"],
+    links: {
+      live: "",
+      repo: "https://github.com/Shahid0324-GIT/gitpulse",
+    },
+    description:
+      "Real-time distributed system visualizing global GitHub activity via WebSockets.",
+    highlights: [
+      "Producer-Consumer Architecture",
+      "Sub-millisecond Redis Pub/Sub Broadcasting",
+      "5-Service Docker Orchestration",
+    ],
+  },
+  {
     id: "handyman",
     title: "Handyman",
     tech: ["Next.js", "Web Workers", "Crypto", "PWA"],
@@ -153,7 +176,6 @@ export const PROJECTS = [
       "Deterministic Testing Suite",
     ],
   },
-
   {
     id: "reverse-ats",
     title: "Reverse ATS Builder",
@@ -225,21 +247,28 @@ export const words = [
 ];
 
 const skills = [
-  { name: "Next.js", icon: SiNextdotjs },
   { name: "TypeScript", icon: SiTypescript },
+  { name: "Node.js", icon: SiNodedotjs },
+  { name: "React", icon: SiReact },
+  { name: "Next.js", icon: SiNextdotjs },
+  { name: "Vue.js", icon: SiVuedotjs },
+  { name: "Nuxt", icon: SiNuxtdotjs },
   { name: "Python", icon: SiPython },
+  { name: "Django", icon: SiDjango },
   { name: "FastAPI", icon: SiFastapi },
+  { name: "Tailwind", icon: SiTailwindcss },
   { name: "PostgreSQL", icon: SiPostgresql },
+  { name: "MongoDB", icon: SiMongodb },
   { name: "Redis", icon: SiRedis },
   { name: "Docker", icon: SiDocker },
-  { name: "Tailwind", icon: SiTailwindcss },
-  { name: "React", icon: SiReact },
-  { name: "MongoDB", icon: SiMongodb },
-  { name: "Node.js", icon: SiNodedotjs },
   { name: "Playwright", icon: SiTestinglibrary },
   { name: "Selenium", icon: SiSelenium },
   { name: "Jest", icon: SiJest },
   { name: "Cypress", icon: SiCypress },
+  { name: "ChatGPT", icon: SiOpenai },
+  { name: "Claude", icon: SiClaude },
+  { name: "Google Gemini", icon: SiGooglegemini },
+  { name: "Webstorm", icon: SiWebstorm },
 ];
 
 export const marqueeContent = [...skills, ...skills, ...skills];
