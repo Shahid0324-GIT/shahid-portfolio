@@ -195,43 +195,36 @@ export const PROJECTS = [
 ];
 
 export const THEMES = {
-  tva: {
-    background: "#f5f2e8",
-    foreground: "#1a1918",
-    primary: "#d97706",
-    secondary: "#78716c",
-    accent: "#f59e0b",
+  // Light mode: MCU — Loki's Asgard × Iron Man Arc Reactor
+  mcu: {
+    background: "#f7f4ee",
+    foreground: "#1a1410",
+    primary: "#b8952a",
+    secondary: "#d9d3c4",
+    accent: "#1a6b4a",
+    accent2: "#1e4a8a",
   },
-  unit02: {
-    background: "#09090b",
-    foreground: "#fafafa",
-    primary: "#ef4444",
-    secondary: "#a1a1aa",
-    accent: "#ea580c",
-  },
-  system: {
-    background: "#000000",
-    foreground: "#ffffff",
-    primary: "#22c55e",
-    secondary: "#3f3f46",
-    accent: "#f97316",
+  // Dark mode: Anime — NGE × Ghost in the Shell × Demon Slayer
+  anime: {
+    background: "#06060a",
+    foreground: "#e8e4f0",
+    primary: "#00e5ff",
+    secondary: "#1a1a2e",
+    accent: "#e63946",
+    accent2: "#7b2d8b",
   },
 };
 
 export const words = [
-  {
-    text: "INITIALIZING...",
-    jp: "初期化中...",
-    ar: "جارٍ البدء...",
-  },
+  { text: "INITIALIZING...", jp: "初期化中...", ar: "جارٍ البدء..." },
   {
     text: "CHECKING LOCATION: Telangana, India",
-    jp: "位置を確認中: ラーマグンダム",
-    ar: "التحقق من الموقع: راماغوندام",
+    jp: "位置確認中: テランガーナ州",
+    ar: "التحقق من الموقع: تيلانغانا",
   },
   {
     text: "LOADING MODULES: NEXT.JS 16",
-    jp: "モジュール読み込み中: NEXT.JS 16",
+    jp: "モジュール読み込み: NEXT.JS 16",
     ar: "تحميل الوحدات: NEXT.JS 16",
   },
   {
@@ -241,11 +234,10 @@ export const words = [
   },
   {
     text: "ACCESS GRANTED",
-    jp: "アクセス許可",
+    jp: "アクセス許可 — ようこそ",
     ar: "تم السماح بالدخول",
   },
 ];
-
 const skills = [
   { name: "TypeScript", icon: SiTypescript },
   { name: "Node.js", icon: SiNodedotjs },

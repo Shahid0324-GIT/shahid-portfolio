@@ -1,53 +1,728 @@
 @import "tailwindcss";
 
-/* --- LIGHT MODE (TVA / RETRO) --- */
+/* ══════════════════════════════════════════════════════════════════
+   LIGHT MODE — MCU Universe: Loki's Asgard × Iron Man's Lab
+   Palette: Asgardian gold, Loki emerald, arc reactor blue on warm ivory
+   ══════════════════════════════════════════════════════════════════ */
 :root {
-  --background: #f2f0e9; /* Warm 'File Paper' White */
-  --foreground: #2d2a26; /* 'Ink' Charcoal */
-  --primary: #ea580c; /* Burnt Orange (TVA Monitor) */
-  --secondary: #e5e5e5; /* Light Gray */
-  --accent: #d97706; /* Amber */
+  --background: #f7f4ee; /* Aged Asgardian parchment */
+  --background-2: #eeeadf; /* Deeper parchment layer */
+  --foreground: #1a1410; /* Dark Loki-esque ink */
+  --primary: #b8952a; /* Loki's gold / Infinity Gauntlet */
+  --primary-glow: rgba(184, 149, 42, 0.3);
+  --secondary: #d9d3c4; /* Stone/marble neutral */
+  --accent: #1a6b4a; /* Loki emerald */
+  --accent-2: #1e4a8a; /* Arc reactor deep blue */
+  --muted: #8a8070;
+
+  /* MCU-specific decorative vars */
+  --rune-color: rgba(184, 149, 42, 0.12);
+  --scan-color: rgba(30, 74, 138, 0.04);
+  --grid-color: rgba(26, 107, 74, 0.06);
+  --border-glow: rgba(184, 149, 42, 0.25);
+
+  /* Typography */
+  --font-display: "Cinzel", serif; /* Asgardian feeling */
 }
 
-/* --- DARK MODE (EVANGELION / UNIT-02) --- */
+/* ══════════════════════════════════════════════════════════════════
+   DARK MODE — Anime Convergence:
+   Neon Genesis Evangelion × Ghost in the Shell × Demon Slayer
+   Palette: Terminal black, NGE purple, GITS cyan, DS crimson flame
+   ══════════════════════════════════════════════════════════════════ */
 .dark {
-  --background: #0a0a0b; /* Deep Mech Grey/Black */
-  --foreground: #ededed; /* Signal White */
-  --primary: #f97316; /* Safety Orange (Unit-02 Core) */
-  --secondary: #27272a; /* Gunmetal */
-  --accent: #22c55e; /* System Green (HUD elements) */
+  --background: #06060a; /* NGE deep void */
+  --background-2: #0d0d14; /* Unit-01 cockpit black */
+  --foreground: #e8e4f0; /* Ghost in the Shell terminal white */
+  --primary: #00e5ff; /* GITS cyan / HUD blue */
+  --primary-glow: rgba(0, 229, 255, 0.25);
+  --secondary: #1a1a2e; /* NGE midnight panel */
+  --accent: #e63946; /* Demon Slayer crimson */
+  --accent-2: #7b2d8b; /* NGE AT Field purple */
+  --muted: #4a4a6a;
+
+  /* Anime-specific decorative vars */
+  --rune-color: rgba(0, 229, 255, 0.05);
+  --scan-color: rgba(0, 229, 255, 0.03);
+  --grid-color: rgba(0, 229, 255, 0.04);
+  --border-glow: rgba(0, 229, 255, 0.2);
+  --flame-1: rgba(230, 57, 70, 0.15);
+  --flame-2: rgba(123, 45, 139, 0.1);
 }
 
+/* ══════════════════════════════════════════════════════════════════
+   SELECTION
+   ══════════════════════════════════════════════════════════════════ */
 ::selection {
-  background-color: var(--color-primary);
-  color: black;
+  background-color: var(--primary);
+  color: var(--background);
 }
 
+/* ══════════════════════════════════════════════════════════════════
+   TAILWIND THEME MAPPING
+   ══════════════════════════════════════════════════════════════════ */
 @theme {
-  /* This maps Tailwind utilities (bg-background, text-primary) to our CSS variables */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
   --color-secondary: var(--secondary);
   --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --color-muted: var(--muted);
+  --color-background-2: var(--background-2);
 
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono:
+    var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, monospace;
 }
 
-/* Global Resets */
+/* ══════════════════════════════════════════════════════════════════
+   GLOBAL BASE
+   ══════════════════════════════════════════════════════════════════ */
 body {
   background-color: var(--background);
   color: var(--foreground);
   transition:
-    background-color 0.5s ease,
-    color 0.5s ease; /* Smooth mode switch */
+    background-color 0.6s ease,
+    color 0.6s ease;
 }
 
 body {
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
-
 body::-webkit-scrollbar {
   display: none;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   LIGHT MODE: MCU BACKGROUND FABRIC
+   Layered Asgardian rune-grid + subtle arc reactor scan lines
+   ══════════════════════════════════════════════════════════════════ */
+
+/* Rune grid — sacred geometry / tesseract lattice */
+.mcu-grid-bg {
+  background-image:
+    linear-gradient(var(--rune-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--rune-color) 1px, transparent 1px),
+    linear-gradient(45deg, var(--scan-color) 1px, transparent 1px),
+    linear-gradient(-45deg, var(--scan-color) 1px, transparent 1px);
+  background-size:
+    60px 60px,
+    60px 60px,
+    120px 120px,
+    120px 120px;
+}
+
+/* MCU hexagonal overlay */
+.mcu-hex-bg {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='92' viewBox='0 0 80 92'%3E%3Cpath d='M40 4 L76 23 L76 69 L40 88 L4 69 L4 23 Z' fill='none' stroke='rgba(184,149,42,0.07)' stroke-width='1'/%3E%3C/svg%3E");
+  background-size: 80px 92px;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   DARK MODE: ANIME BACKGROUND FABRIC
+   NGE scan lines + GITS rain-like particle field
+   ══════════════════════════════════════════════════════════════════ */
+.dark .mcu-grid-bg,
+.dark .mcu-hex-bg {
+  background-image:
+    linear-gradient(var(--grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* NGE scan line overlay on body */
+.dark body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 3px,
+    rgba(0, 229, 255, 0.012) 3px,
+    rgba(0, 229, 255, 0.012) 4px
+  );
+  pointer-events: none;
+  z-index: 9000;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   MCU LIGHT MODE: DECORATIVE ELEMENTS
+   ══════════════════════════════════════════════════════════════════ */
+
+/* Gold Loki divider line */
+.mcu-divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--primary) 20%,
+    var(--accent) 50%,
+    var(--primary) 80%,
+    transparent
+  );
+  opacity: 0.4;
+}
+
+/* Asgardian corner bracket */
+.mcu-corner::before,
+.mcu-corner::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-color: var(--primary);
+  border-style: solid;
+  opacity: 0.4;
+}
+.mcu-corner-tl::before {
+  top: 0;
+  left: 0;
+  border-width: 2px 0 0 2px;
+}
+.mcu-corner-tr::after {
+  top: 0;
+  right: 0;
+  border-width: 2px 2px 0 0;
+}
+
+/* Arc reactor glow button (light mode) */
+:root .mcu-btn-primary {
+  background: var(--foreground);
+  color: var(--background);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid transparent;
+}
+:root .mcu-btn-primary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
+  transform: translateX(-100%);
+  transition: transform 0.4s cubic-bezier(0.76, 0, 0.24, 1);
+}
+:root .mcu-btn-primary:hover::before {
+  transform: translateX(0);
+}
+:root .mcu-btn-primary:hover {
+  border-color: var(--primary);
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   ANIME DARK MODE: DECORATIVE ELEMENTS
+   ══════════════════════════════════════════════════════════════════ */
+
+/* Neon glow text — GITS terminal style */
+.dark .neon-text {
+  color: var(--primary);
+  text-shadow:
+    0 0 7px rgba(0, 229, 255, 0.8),
+    0 0 20px rgba(0, 229, 255, 0.5),
+    0 0 40px rgba(0, 229, 255, 0.2);
+}
+
+/* Demon Slayer flame border — animated */
+.dark .flame-border {
+  border-image: linear-gradient(
+      180deg,
+      var(--accent) 0%,
+      #ff6b35 40%,
+      var(--accent-2) 100%
+    )
+    1;
+  box-shadow:
+    0 0 15px rgba(230, 57, 70, 0.3),
+    inset 0 0 15px rgba(230, 57, 70, 0.05);
+}
+
+/* NGE AT Field hex pattern */
+.dark .at-field-overlay {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='69' viewBox='0 0 60 69'%3E%3Cpath d='M30 3 L57 17 L57 52 L30 66 L3 52 L3 17 Z' fill='none' stroke='rgba(123,45,139,0.08)' stroke-width='1'/%3E%3C/svg%3E");
+  background-size: 60px 69px;
+}
+
+/* GITS matrix rain shimmer */
+@keyframes gits-shimmer {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 0% 200%;
+  }
+}
+.dark .gits-surface {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 229, 255, 0.03) 0%,
+    transparent 50%,
+    rgba(0, 229, 255, 0.03) 100%
+  );
+  background-size: 100% 200%;
+  animation: gits-shimmer 8s linear infinite;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   SHARED ANIMATED UTILITIES
+   ══════════════════════════════════════════════════════════════════ */
+
+/* Border glow pulse */
+@keyframes border-pulse {
+  0%,
+  100% {
+    border-color: var(--border-glow);
+    box-shadow: 0 0 0 rgba(var(--primary), 0);
+  }
+  50% {
+    border-color: var(--primary);
+    box-shadow: 0 0 20px var(--primary-glow);
+  }
+}
+.border-glow-pulse {
+  animation: border-pulse 3s ease-in-out infinite;
+}
+
+/* Glitch keyframes — Header name scramble support */
+@keyframes glitch-shift {
+  0%,
+  90%,
+  100% {
+    clip-path: none;
+    transform: none;
+  }
+  91% {
+    clip-path: polygon(0 20%, 100% 20%, 100% 40%, 0 40%);
+    transform: translateX(-3px);
+  }
+  93% {
+    clip-path: polygon(0 60%, 100% 60%, 100% 80%, 0 80%);
+    transform: translateX(3px);
+  }
+  95% {
+    clip-path: none;
+    transform: none;
+  }
+}
+
+/* Orbital ring spin */
+@keyframes orbit-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes orbit-spin-reverse {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+.orbit {
+  animation: orbit-spin linear infinite;
+}
+.orbit-reverse {
+  animation: orbit-spin-reverse linear infinite;
+}
+
+/* Preloader bar glow */
+.preloader-bar {
+  box-shadow:
+    0 0 8px var(--primary),
+    0 0 20px var(--primary-glow);
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   LIGHT MODE SPECIFIC OVERRIDES
+   ══════════════════════════════════════════════════════════════════ */
+:root .font-mono {
+  letter-spacing: 0.05em;
+}
+
+/* Timeline connector — gold chain (light) vs neon wire (dark) */
+:root .timeline-connector {
+  background: linear-gradient(180deg, var(--primary) 0%, var(--accent) 100%);
+  opacity: 0.5;
+}
+.dark .timeline-connector {
+  background: linear-gradient(180deg, var(--primary) 0%, var(--accent-2) 100%);
+  opacity: 0.6;
+  box-shadow: 0 0 8px var(--primary-glow);
+}
+
+/* Timeline node */
+:root .timeline-node {
+  border: 2px solid var(--primary);
+  background: var(--background);
+  box-shadow: 0 0 0 4px var(--primary-glow);
+}
+.dark .timeline-node {
+  border: 2px solid var(--primary);
+  background: var(--background);
+  box-shadow:
+    0 0 12px var(--primary-glow),
+    0 0 24px rgba(0, 229, 255, 0.1);
+}
+
+/* Card hover (light = gold shimmer, dark = neon edge) */
+:root .theme-card {
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid var(--secondary);
+  backdrop-filter: blur(4px);
+  transition:
+    border-color 0.3s,
+    box-shadow 0.3s,
+    background 0.3s;
+}
+:root .theme-card:hover {
+  border-color: var(--primary);
+  box-shadow:
+    0 4px 30px var(--primary-glow),
+    inset 0 0 20px rgba(184, 149, 42, 0.04);
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.dark .theme-card {
+  background: rgba(13, 13, 20, 0.8);
+  border: 1px solid rgba(0, 229, 255, 0.1);
+  backdrop-filter: blur(4px);
+  transition:
+    border-color 0.3s,
+    box-shadow 0.3s;
+}
+.dark .theme-card:hover {
+  border-color: rgba(0, 229, 255, 0.5);
+  box-shadow:
+    0 0 20px rgba(0, 229, 255, 0.1),
+    0 0 60px rgba(0, 229, 255, 0.04),
+    inset 0 0 30px rgba(0, 229, 255, 0.02);
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   PRIMARY COLOR UTILITY OVERRIDES (theme-aware)
+   ══════════════════════════════════════════════════════════════════ */
+
+/* Marquee skill icon hover — light: gold glow, dark: cyan neon */
+:root .skill-icon-hover:hover {
+  color: var(--primary) !important;
+  filter: drop-shadow(0 0 6px var(--primary-glow));
+}
+.dark .skill-icon-hover:hover {
+  color: var(--primary) !important;
+  filter: drop-shadow(0 0 8px var(--primary))
+    drop-shadow(0 0 20px rgba(0, 229, 255, 0.4));
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   PRELOADER: MCU light = SHIELD/Stark boot sequence
+             Dark = NGE/NERV system initialization
+   ══════════════════════════════════════════════════════════════════ */
+:root .preloader-surface {
+  background: var(--background);
+}
+:root .preloader-dot-grid {
+  background-image: radial-gradient(
+    circle,
+    var(--primary) 1px,
+    transparent 1px
+  );
+  opacity: 0.06;
+  background-size: 24px 24px;
+}
+.dark .preloader-surface {
+  background: var(--background);
+}
+.dark .preloader-dot-grid {
+  background-image: radial-gradient(
+    circle,
+    var(--primary) 1px,
+    transparent 1px
+  );
+  opacity: 0.08;
+  background-size: 20px 20px;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   HEADER: MCU light = Asgard gold rune bar
+           Dark = NERV terminal header
+   ══════════════════════════════════════════════════════════════════ */
+:root .header-name-text {
+  color: var(--primary);
+  text-shadow: 0 0 20px var(--primary-glow);
+  letter-spacing: 0.12em;
+}
+.dark .header-name-text {
+  color: var(--primary);
+  text-shadow:
+    0 0 10px rgba(0, 229, 255, 0.7),
+    0 0 30px rgba(0, 229, 255, 0.3);
+  letter-spacing: 0.1em;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   HERO: MCU light = Stark HUD orbit system
+         Dark = GITS/NGE targeting reticle with AT field rings
+   ══════════════════════════════════════════════════════════════════ */
+
+/* Light mode orbit borders — Loki gold */
+:root .orbit-ring {
+  border-color: rgba(184, 149, 42, 0.25);
+}
+:root .orbit-ring-solid {
+  border-color: rgba(26, 107, 74, 0.4);
+}
+:root .orbit-planet-1 {
+  background: var(--accent-2);
+  box-shadow: 0 0 10px rgba(30, 74, 138, 0.5);
+}
+:root .orbit-planet-2 {
+  background: var(--accent);
+  box-shadow: 0 0 8px rgba(26, 107, 74, 0.4);
+}
+:root .orbit-dash {
+  background: var(--primary);
+  box-shadow: 0 0 8px var(--primary-glow);
+}
+
+/* Dark mode orbit borders — NGE purple + cyan */
+.dark .orbit-ring {
+  border-color: rgba(123, 45, 139, 0.3);
+}
+.dark .orbit-ring-solid {
+  border-color: rgba(0, 229, 255, 0.2);
+}
+.dark .orbit-planet-1 {
+  background: var(--accent);
+  box-shadow: 0 0 12px rgba(230, 57, 70, 0.7);
+}
+.dark .orbit-planet-2 {
+  background: var(--accent-2);
+  box-shadow: 0 0 10px rgba(123, 45, 139, 0.6);
+}
+.dark .orbit-dash {
+  background: var(--primary);
+  box-shadow:
+    0 0 10px var(--primary-glow),
+    0 0 20px rgba(0, 229, 255, 0.4);
+}
+
+/* Hero center node */
+:root .hero-center-node {
+  background: var(--background);
+  border: 1px solid rgba(184, 149, 42, 0.4);
+  box-shadow: 0 0 30px rgba(184, 149, 42, 0.1);
+}
+.dark .hero-center-node {
+  background: var(--background-2);
+  border: 1px solid rgba(0, 229, 255, 0.25);
+  box-shadow:
+    0 0 30px rgba(0, 229, 255, 0.12),
+    0 0 60px rgba(0, 229, 255, 0.04),
+    inset 0 0 20px rgba(0, 229, 255, 0.03);
+}
+
+/* Hero status badge */
+:root .status-badge {
+  background: rgba(184, 149, 42, 0.1);
+  border-color: rgba(184, 149, 42, 0.3);
+  color: var(--primary);
+}
+:root .status-dot {
+  background: var(--primary);
+}
+
+.dark .status-badge {
+  background: rgba(0, 229, 255, 0.06);
+  border-color: rgba(0, 229, 255, 0.2);
+  color: var(--primary);
+}
+.dark .status-dot {
+  background: var(--primary);
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   PROJECTS: MCU light = Stark Mission Dossier
+             Dark = Ghost in the Shell Data Vault
+   ══════════════════════════════════════════════════════════════════ */
+:root .project-num {
+  color: rgba(184, 149, 42, 0.2);
+}
+:root .project-card-hover:hover .project-num {
+  color: rgba(184, 149, 42, 0.5);
+}
+:root .project-highlight-dot {
+  background: var(--accent);
+}
+:root .project-highlight-text {
+  color: var(--accent);
+}
+
+.dark .project-num {
+  color: rgba(0, 229, 255, 0.15);
+}
+.dark .project-card-hover:hover .project-num {
+  color: rgba(0, 229, 255, 0.4);
+}
+.dark .project-highlight-dot {
+  background: var(--primary);
+}
+.dark .project-highlight-text {
+  color: var(--primary);
+}
+.dark .project-tech-tag {
+  border-color: rgba(0, 229, 255, 0.12);
+  color: rgba(0, 229, 255, 0.6);
+}
+:root .project-tech-tag {
+  border-color: rgba(184, 149, 42, 0.2);
+  color: var(--muted);
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   SECTION LABELS
+   ══════════════════════════════════════════════════════════════════ */
+:root .section-label {
+  color: var(--primary);
+  letter-spacing: 0.18em;
+}
+.dark .section-label {
+  color: var(--primary);
+  letter-spacing: 0.18em;
+  text-shadow: 0 0 12px rgba(0, 229, 255, 0.5);
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   MARQUEE: skill hover glow
+   ══════════════════════════════════════════════════════════════════ */
+:root .marquee-icon {
+  color: var(--muted);
+}
+:root .marquee-icon:hover {
+  color: var(--primary);
+  filter: drop-shadow(0 0 6px var(--primary-glow));
+  transform: scale(1.15);
+}
+.dark .marquee-icon {
+  color: rgba(255, 255, 255, 0.25);
+}
+.dark .marquee-icon:hover {
+  color: var(--primary);
+  filter: drop-shadow(0 0 8px var(--primary))
+    drop-shadow(0 0 20px rgba(0, 229, 255, 0.3));
+  transform: scale(1.15);
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   THEME TOGGLE
+   ══════════════════════════════════════════════════════════════════ */
+:root .toggle-knob {
+  background: var(--primary);
+}
+.dark .toggle-knob {
+  background: var(--primary);
+  box-shadow:
+    0 0 8px var(--primary),
+    0 0 16px var(--primary-glow);
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   FOOTER / CONTACT SECTION
+   ══════════════════════════════════════════════════════════════════ */
+:root .contact-title {
+  background: linear-gradient(
+    135deg,
+    var(--foreground) 0%,
+    var(--primary) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.dark .contact-title {
+  background: linear-gradient(
+    135deg,
+    var(--foreground) 0%,
+    var(--primary) 60%,
+    var(--accent) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   HISTORY PAGE: Achievement list markers
+   ══════════════════════════════════════════════════════════════════ */
+:root .achievement-marker {
+  color: var(--primary);
+}
+.dark .achievement-marker {
+  color: var(--primary);
+  text-shadow: 0 0 8px rgba(0, 229, 255, 0.6);
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   CUSTOM SCROLLBAR (for project cards with overflow-y-auto)
+   ══════════════════════════════════════════════════════════════════ */
+.scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   LOADING / TRANSITION ANIMATIONS
+   ══════════════════════════════════════════════════════════════════ */
+@keyframes flicker {
+  0%,
+  95%,
+  100% {
+    opacity: 1;
+  }
+  96% {
+    opacity: 0.6;
+  }
+  97% {
+    opacity: 1;
+  }
+  98% {
+    opacity: 0.7;
+  }
+  99% {
+    opacity: 1;
+  }
+}
+.dark .neon-flicker {
+  animation: flicker 6s ease-in-out infinite;
+}
+
+@keyframes ds-flame {
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scaleY(1) translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleY(1.05) translateY(-2px);
+  }
+}
+.dark .flame-pulse {
+  animation: ds-flame 2s ease-in-out infinite;
+}
+
+/* Warp lines (GITS/NGE speed effect on scroll) */
+@keyframes warp-line {
+  from {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  to {
+    transform: scaleX(1);
+    opacity: 0;
+  }
 }
