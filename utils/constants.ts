@@ -38,7 +38,7 @@ export const DATA = {
   role: "Fullstack Engineer",
   location: "Telangana, India",
   email: "moshahid0324@gmail.com",
-  experience: calculateExperience(new Date("2024-01-01")),
+  experience: calculateExperience(new Date("2023-04-01")),
 };
 
 export const SOCIALS = {
