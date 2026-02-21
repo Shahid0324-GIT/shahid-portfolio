@@ -36,15 +36,6 @@ export default function Projects() {
     ? "// MISSION_ARCHIVE_2026"
     : "/// PROJECT DOSSIER — 2026";
 
-  const cardBg = isDark ? "rgba(13,13,20,0.8)" : "rgba(255,255,255,0.5)";
-  const cardBorder = isDark ? "rgba(0,229,255,0.1)" : "rgba(184,149,42,0.2)";
-  const cardHoverBorder = isDark
-    ? "rgba(0,229,255,0.45)"
-    : "rgba(184,149,42,0.6)";
-  const cardHoverShadow = isDark
-    ? "0 0 30px rgba(0,229,255,0.08), 0 0 80px rgba(0,229,255,0.03)"
-    : "0 8px 40px rgba(184,149,42,0.12), 0 2px 8px rgba(0,0,0,0.05)";
-
   return (
     <section
       id="projects"
@@ -73,19 +64,7 @@ export default function Projects() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="group relative overflow-hidden border p-6 transition-all duration-300"
-            style={{
-              background: cardBg,
-              borderColor: cardBorder,
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = cardHoverBorder;
-              e.currentTarget.style.boxShadow = cardHoverShadow;
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = cardBorder;
-              e.currentTarget.style.boxShadow = "none";
-            }}
+            className="theme-card group relative overflow-hidden p-6"
           >
             <div
               className="absolute top-0 left-0 right-0 h-0.5 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"
@@ -98,7 +77,11 @@ export default function Projects() {
 
             <div
               className="mb-4 flex items-center justify-between border-b pb-4"
-              style={{ borderColor: cardBorder }}
+              style={{
+                borderColor: isDark
+                  ? "rgba(0,229,255,0.1)"
+                  : "rgba(184,149,42,0.2)",
+              }}
             >
               <span
                 className="font-mono text-4xl font-bold transition-colors duration-300"
@@ -160,13 +143,7 @@ export default function Projects() {
               {project.tech.map((t) => (
                 <span
                   key={t}
-                  className="border px-2 py-1 font-mono text-[10px] uppercase"
-                  style={{
-                    borderColor: isDark
-                      ? "rgba(0,229,255,0.12)"
-                      : "rgba(184,149,42,0.2)",
-                    color: "var(--muted)",
-                  }}
+                  className="project-tech-tag border px-2 py-1 font-mono text-[10px] uppercase"
                 >
                   {t}
                 </span>
@@ -210,29 +187,17 @@ export default function Projects() {
                 key={project.id}
                 className="group project-card-hover relative h-[60vh] w-[60vw] shrink-0 lg:w-[45vw]"
               >
-                <div
-                  className="relative flex h-full flex-col justify-between border p-8 lg:p-10 overflow-y-auto scrollbar-hide transition-all duration-400"
-                  style={{
-                    background: cardBg,
-                    borderColor: cardBorder,
-                    backdropFilter: "blur(4px)",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = cardHoverBorder;
-                    e.currentTarget.style.boxShadow = cardHoverShadow;
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = cardBorder;
-                    e.currentTarget.style.boxShadow = "none";
-                  }}
-                >
+                <div className="theme-card relative flex h-full flex-col justify-between p-8 lg:p-10 overflow-y-auto scrollbar-hide">
                   <div
-                    className="absolute top-0 left-0 right-0 h-0.5 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"
-                    style={{
-                      background: isDark
-                        ? "linear-gradient(90deg, var(--primary), var(--accent), var(--accent-2))"
-                        : "linear-gradient(90deg, var(--primary), var(--accent))",
-                    }}
+                    className={`absolute top-0 left-0 right-0 h-0.5 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left ${isDark ? "flame-border" : ""}`}
+                    style={
+                      !isDark
+                        ? {
+                            background:
+                              "linear-gradient(90deg, var(--primary), var(--accent))",
+                          }
+                        : {}
+                    }
                   />
 
                   {isDark && (
@@ -245,7 +210,11 @@ export default function Projects() {
                   <div className="space-y-4">
                     <div
                       className="flex items-center justify-between border-b pb-4 shrink-0"
-                      style={{ borderColor: cardBorder }}
+                      style={{
+                        borderColor: isDark
+                          ? "rgba(0,229,255,0.1)"
+                          : "rgba(184,149,42,0.2)",
+                      }}
                     >
                       <span
                         className="project-num font-mono text-4xl font-bold transition-colors duration-300"
@@ -317,13 +286,7 @@ export default function Projects() {
                       {project.tech.map((t) => (
                         <span
                           key={t}
-                          className="border px-2 py-1 font-mono text-xs uppercase whitespace-nowrap"
-                          style={{
-                            borderColor: isDark
-                              ? "rgba(0,229,255,0.12)"
-                              : "rgba(184,149,42,0.2)",
-                            color: "var(--muted)",
-                          }}
+                          className="project-tech-tag border px-2 py-1 font-mono text-xs uppercase whitespace-nowrap"
                         >
                           {t}
                         </span>
@@ -334,7 +297,7 @@ export default function Projects() {
                       {project.highlights.map((highlight, idx) => (
                         <li key={idx} className="flex items-start gap-2">
                           <span
-                            className="h-1.5 w-1.5 mt-1.5 shrink-0 rounded-full"
+                            className="project-highlight-dot h-1.5 w-1.5 mt-1.5 shrink-0 rounded-full"
                             style={{
                               background: "var(--primary)",
                               boxShadow: isDark
@@ -342,15 +305,7 @@ export default function Projects() {
                                 : "none",
                             }}
                           />
-                          <span
-                            style={{
-                              color: isDark
-                                ? "rgba(0,229,255,0.7)"
-                                : "var(--accent)",
-                            }}
-                          >
-                            {">"}{" "}
-                          </span>
+                          <span className="project-highlight-text">{">"} </span>
                           <span style={{ color: "var(--muted)" }}>
                             {highlight}
                           </span>

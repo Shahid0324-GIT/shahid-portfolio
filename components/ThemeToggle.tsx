@@ -53,7 +53,7 @@ export default function ThemeToggle() {
       <motion.div
         layout
         transition={{ type: "spring", stiffness: 500, damping: 30 }}
-        className="relative z-10 h-6 w-6 shrink-0 rounded-full"
+        className="toggle-knob relative z-10 h-6 w-6 shrink-0 rounded-full"
         style={{
           background: "var(--primary)",
           boxShadow: isDark

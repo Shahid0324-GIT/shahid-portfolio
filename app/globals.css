@@ -39,7 +39,7 @@
   --secondary: #1a1a2e; /* NGE midnight panel */
   --accent: #e63946; /* Demon Slayer crimson */
   --accent-2: #7b2d8b; /* NGE AT Field purple */
-  --muted: #4a4a6a;
+  --muted: #5a5a85;
 
   /* Anime-specific decorative vars */
   --rune-color: rgba(0, 229, 255, 0.05);
@@ -385,11 +385,14 @@ body::-webkit-scrollbar {
   background: rgba(13, 13, 20, 0.8);
   border: 1px solid rgba(0, 229, 255, 0.1);
   backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   transition:
     border-color 0.3s,
-    box-shadow 0.3s;
+    box-shadow 0.3s,
+    background 0.3s;
 }
 .dark .theme-card:hover {
+  background: rgba(13, 13, 20, 0.85);
   border-color: rgba(0, 229, 255, 0.5);
   box-shadow:
     0 0 20px rgba(0, 229, 255, 0.1),

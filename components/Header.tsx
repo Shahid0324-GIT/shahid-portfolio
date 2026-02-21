@@ -19,7 +19,7 @@ export default function HeaderClient() {
   const [langIndex, setLangIndex] = useState(0);
   const { scrollY } = useScroll();
   const [isScrolled, setIsScrolled] = useState(false);
-  const isDark = useIsDark(); // hydration-safe
+  const isDark = useIsDark();
 
   useEffect(() => {
     return scrollY.on("change", (latest) => {
@@ -59,43 +59,43 @@ export default function HeaderClient() {
     <motion.header
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className={`fixed top-0 z-50 flex w-full items-center justify-between py-3 md:px-12 px-4 pointer-events-none transition-all duration-500 ${
+      className={`fixed top-0 z-50 flex w-full items-center justify-between py-3 px-4 md:px-12 pointer-events-none transition-all duration-500 ${
         isScrolled ? "backdrop-blur-md" : ""
       }`}
       style={{
-        background: isScrolled
-          ? isDark
-            ? "rgba(6,6,10,0.85)"
-            : "rgba(247,244,238,0.85)"
-          : "transparent",
-        borderBottom: isScrolled
-          ? `1px solid ${isDark ? "rgba(0,229,255,0.1)" : "rgba(184,149,42,0.15)"}`
-          : "1px solid transparent",
+        background: isDark
+          ? isScrolled
+            ? "rgba(6,6,10,0.92)"
+            : "rgba(6,6,10,0.6)"
+          : isScrolled
+            ? "rgba(247,244,238,0.92)"
+            : "rgba(247,244,238,0.5)",
+        borderBottom: `1px solid ${
+          isDark ? "rgba(0,229,255,0.08)" : "rgba(184,149,42,0.12)"
+        }`,
+        backdropFilter: "blur(12px)",
+        WebkitBackdropFilter: "blur(12px)",
       }}
     >
-      <div className="pointer-events-auto md:ml-0 lg:ml-12 font-mono text-sm font-bold tracking-widest">
+      <div className="pointer-events-auto lg:ml-12 font-mono font-bold tracking-widest min-w-0 flex items-center gap-1.5 overflow-hidden">
         <span
+          className="shrink-0"
           style={{
             color: isDark ? "rgba(0,229,255,0.4)" : "rgba(184,149,42,0.5)",
-            marginRight: "8px",
+            fontSize: "0.75rem",
           }}
         >
           {isDark ? "//" : ">"}
         </span>
+
         <span
-          className={isDark ? "neon-flicker" : ""}
-          style={{
-            color: "var(--primary)",
-            textShadow: isDark
-              ? "0 0 10px rgba(0,229,255,0.7), 0 0 30px rgba(0,229,255,0.3)"
-              : "0 0 15px rgba(184,149,42,0.3)",
-          }}
+          className={`header-name-text text-sm truncate ${isDark ? "neon-flicker" : ""}`}
         >
           {text}
         </span>
       </div>
 
-      <div className="pointer-events-auto flex items-center gap-4">
+      <div className="pointer-events-auto flex items-center gap-3 shrink-0">
         <motion.span
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -103,7 +103,7 @@ export default function HeaderClient() {
           style={{ color: "var(--muted)" }}
         >
           <span
-            className="h-1.5 w-1.5 rounded-full animate-pulse"
+            className="h-1.5 w-1.5 rounded-full animate-pulse shrink-0"
             style={{
               background: "var(--accent)",
               boxShadow: isDark
@@ -113,6 +113,17 @@ export default function HeaderClient() {
           />
           {isDark ? "NERV.SYS ONLINE" : "CLEARANCE: AVENGER"}
         </motion.span>
+
+        <span
+          className="flex md:hidden h-1.5 w-1.5 rounded-full animate-pulse"
+          style={{
+            background: "var(--accent)",
+            boxShadow: isDark
+              ? "0 0 6px var(--accent)"
+              : "0 0 6px rgba(26,107,74,0.5)",
+          }}
+        />
+
         <ThemeToggle />
       </div>
     </motion.header>

@@ -52,18 +52,13 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
           initial={{ y: 0 }}
           exit={{ y: "-100%" }}
           transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
-          className="fixed inset-0 z-9999 flex flex-col items-start justify-end px-6 py-12 md:px-20"
-          style={{ background: "var(--background)" }}
+          // preloader-surface: themed background via CSS
+          className="preloader-surface fixed inset-0 z-9999 flex flex-col items-start justify-end px-6 py-12 md:px-20"
         >
-          <div
-            className="pointer-events-none absolute inset-0"
-            style={{
-              backgroundImage: `radial-gradient(circle, var(--primary) 1px, transparent 1px)`,
-              backgroundSize: "20px 20px",
-              opacity: isDark ? 0.06 : 0.05,
-            }}
-          />
+          {/* Dot grid — preloader-dot-grid handles opacity + size per theme */}
+          <div className="preloader-dot-grid pointer-events-none absolute inset-0" />
 
+          {/* Light: Asgard radial glow */}
           {!isDark && (
             <div
               className="pointer-events-none absolute inset-0"
@@ -73,17 +68,13 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
               }}
             />
           )}
+
+          {/* Dark: NGE AT-field hex */}
           {isDark && (
-            <div
-              className="pointer-events-none absolute inset-0"
-              style={{
-                backgroundImage:
-                  "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='69' viewBox='0 0 60 69'%3E%3Cpath d='M30 3 L57 17 L57 52 L30 66 L3 52 L3 17 Z' fill='none' stroke='rgba(123,45,139,0.07)' stroke-width='1'/%3E%3C/svg%3E\")",
-                backgroundSize: "60px 69px",
-              }}
-            />
+            <div className="at-field-overlay pointer-events-none absolute inset-0" />
           )}
 
+          {/* Dark: NGE scan lines */}
           {isDark && (
             <div
               className="pointer-events-none absolute inset-0"
@@ -94,6 +85,7 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
             />
           )}
 
+          {/* Progress bar track */}
           <div
             className="absolute top-0 left-0 h-0.5 w-full"
             style={{
@@ -102,8 +94,9 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
                 : "rgba(184,149,42,0.1)",
             }}
           >
+            {/* preloader-bar: glow shadow from CSS */}
             <motion.div
-              className="h-full"
+              className="preloader-bar h-full"
               initial={{ width: "0%" }}
               animate={{ width: `${progress}%` }}
               transition={{ duration: 0.4, ease: "easeInOut" }}
@@ -111,11 +104,11 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
                 background: isDark
                   ? "linear-gradient(90deg, var(--accent-2), var(--primary))"
                   : "linear-gradient(90deg, var(--accent), var(--primary))",
-                boxShadow: `0 0 10px var(--primary), 0 0 20px var(--primary-glow)`,
               }}
             />
           </div>
 
+          {/* Corner brackets */}
           {[
             "top-4 left-4 border-t-2 border-l-2",
             "top-4 right-4 border-t-2 border-r-2",
@@ -132,6 +125,7 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
             />
           ))}
 
+          {/* System label */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -141,6 +135,7 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
             {isDark ? "NERV MAGI SYSTEM" : "STARK / S.H.I.E.L.D."}
           </motion.div>
 
+          {/* Progress percentage */}
           <motion.div
             className="absolute bottom-12 right-8 font-mono text-xs tracking-widest tabular-nums"
             style={{
@@ -151,6 +146,7 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
             {Math.round(progress).toString().padStart(3, "0")}%
           </motion.div>
 
+          {/* Boot text */}
           <div
             className="relative z-10 font-mono text-xs md:text-sm uppercase tracking-widest"
             style={{ color: "var(--primary)" }}
@@ -166,8 +162,9 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
             >
               {display}
             </motion.span>
+            {/* flame-pulse: subtle vertical pulse on cursor blink in dark */}
             <span
-              className="animate-pulse"
+              className={`animate-pulse ${isDark ? "flame-pulse" : ""}`}
               style={{
                 color: isDark ? "rgba(0,229,255,0.8)" : "var(--foreground)",
               }}

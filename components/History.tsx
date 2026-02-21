@@ -9,14 +9,10 @@ export default function History() {
   const isDark = useIsDark();
 
   const borderColor = isDark ? "rgba(0,229,255,0.08)" : "rgba(184,149,42,0.15)";
-  const cardBg = isDark ? "rgba(13,13,20,0.7)" : "rgba(255,255,255,0.5)";
-  const cardBorder = isDark ? "rgba(0,229,255,0.1)" : "rgba(184,149,42,0.2)";
-  const cardHoverBorder = isDark
-    ? "rgba(0,229,255,0.35)"
-    : "rgba(184,149,42,0.5)";
 
   return (
     <section className="relative min-h-screen bg-background px-6 py-24 md:px-12 lg:px-24">
+      {/* Background grid */}
       <div
         className="pointer-events-none absolute inset-0 z-0"
         style={{
@@ -28,6 +24,7 @@ export default function History() {
         }}
       />
 
+      {/* Dark: AT field hex overlay */}
       {isDark && (
         <div
           className="pointer-events-none absolute inset-0 z-0"
@@ -39,6 +36,7 @@ export default function History() {
         />
       )}
 
+      {/* Demon Slayer flame at bottom-left (dark only) */}
       {isDark && (
         <div
           className="pointer-events-none absolute bottom-0 left-0 w-96 h-96 z-0"
@@ -49,6 +47,7 @@ export default function History() {
         />
       )}
 
+      {/* MCU light: Asgard radial glow bottom right */}
       {!isDark && (
         <div
           className="pointer-events-none absolute bottom-0 right-0 w-150 h-100 z-0"
@@ -60,6 +59,8 @@ export default function History() {
       )}
 
       <div className="relative z-10 mx-auto">
+        {/* Section header */}
+        <div className="mcu-divider mb-2" />
         <div
           className="mb-16 flex items-end justify-between border-b pb-6"
           style={{ borderColor }}
@@ -93,9 +94,11 @@ export default function History() {
           </span>
         </div>
 
+        {/* Timeline */}
         <div className="relative space-y-12 pl-8 md:pl-0">
+          {/* Center line */}
           <div
-            className="absolute left-0 top-0 bottom-0 hidden w-px md:left-1/2 md:block"
+            className="timeline-connector absolute left-0 top-0 bottom-0 hidden w-px md:left-1/2 md:block"
             style={{
               background: isDark
                 ? "linear-gradient(180deg, rgba(0,229,255,0.4) 0%, rgba(123,45,139,0.3) 50%, rgba(230,57,70,0.2) 100%)"
@@ -116,16 +119,8 @@ export default function History() {
                 index % 2 === 0 ? "md:text-right" : "md:flex-row-reverse"
               }`}
             >
-              <div
-                className="absolute -left-9.5 top-0 flex h-4 w-4 items-center justify-center rounded-full border md:left-1/2 md:-translate-x-1/2"
-                style={{
-                  borderColor: "var(--primary)",
-                  background: "var(--background)",
-                  boxShadow: isDark
-                    ? "0 0 12px rgba(0,229,255,0.6), 0 0 24px rgba(0,229,255,0.2)"
-                    : "0 0 0 4px rgba(184,149,42,0.15)",
-                }}
-              >
+              {/* Timeline node */}
+              <div className="timeline-node absolute -left-9.5 top-0 flex h-4 w-4 items-center justify-center rounded-full md:left-1/2 md:-translate-x-1/2">
                 <div
                   className="h-2 w-2 rounded-full animate-pulse"
                   style={{
@@ -136,20 +131,7 @@ export default function History() {
               </div>
 
               <div className="flex-1">
-                <div
-                  className="group relative border p-6 transition-all duration-300"
-                  style={{ background: cardBg, borderColor: cardBorder }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = cardHoverBorder;
-                    e.currentTarget.style.boxShadow = isDark
-                      ? "0 0 20px rgba(0,229,255,0.08), -4px 0 20px rgba(0,229,255,0.05)"
-                      : "0 4px 30px rgba(184,149,42,0.1)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = cardBorder;
-                    e.currentTarget.style.boxShadow = "none";
-                  }}
-                >
+                <div className="theme-card group relative p-6">
                   {/* Card top accent line */}
                   <div
                     className="absolute top-0 left-0 right-0 h-px scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"
@@ -203,42 +185,24 @@ export default function History() {
                         className="flex items-start gap-2 text-left md:text-inherit"
                         style={{ color: "var(--muted)" }}
                       >
-                        <span
-                          className="block md:hidden"
-                          style={{ color: "var(--primary)" }}
-                        >
+                        {/* Mobile prefix */}
+                        <span className="achievement-marker block md:hidden">
                           {">"}
                         </span>
 
+                        {/* Desktop left-even */}
                         <span className="hidden md:block">
                           {index % 2 !== 0 && (
-                            <span
-                              style={{
-                                color: "var(--primary)",
-                                textShadow: isDark
-                                  ? "0 0 6px rgba(0,229,255,0.5)"
-                                  : "none",
-                              }}
-                            >
-                              {">"}{" "}
-                            </span>
+                            <span className="achievement-marker">{">"} </span>
                           )}
                         </span>
 
                         {item}
 
+                        {/* Desktop right-odd */}
                         <span className="hidden md:block">
                           {index % 2 === 0 && (
-                            <span
-                              style={{
-                                color: "var(--primary)",
-                                textShadow: isDark
-                                  ? "0 0 6px rgba(0,229,255,0.5)"
-                                  : "none",
-                              }}
-                            >
-                              {" <"}
-                            </span>
+                            <span className="achievement-marker">{" <"}</span>
                           )}
                         </span>
                       </li>
@@ -252,6 +216,7 @@ export default function History() {
           ))}
         </div>
 
+        {/* ── Contact footer ── */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -261,29 +226,18 @@ export default function History() {
         >
           <div className="flex flex-col items-start justify-between gap-8 md:flex-row md:items-end">
             <div>
-              <h2 className="font-sans text-5xl font-bold uppercase leading-[0.9] tracking-tighter md:text-8xl">
+              <h2 className="contact-title font-sans text-5xl font-bold uppercase leading-[0.9] tracking-tighter md:text-8xl">
                 {isDark ? (
                   <>
-                    <span style={{ color: "var(--foreground)" }}>
-                      Let&apos;s Build
-                    </span>
+                    Let&apos;s Build
                     <br />
-                    <span
-                      style={{
-                        color: "var(--primary)",
-                        textShadow:
-                          "0 0 30px rgba(0,229,255,0.3), 0 0 80px rgba(0,229,255,0.1)",
-                      }}
-                      className="neon-flicker"
-                    >
-                      Something
-                    </span>
+                    <span className="neon-flicker">Something</span>
                   </>
                 ) : (
                   <>
                     Let&apos;s Build
                     <br />
-                    <span style={{ color: "var(--primary)" }}>Something</span>
+                    Something
                   </>
                 )}
               </h2>
@@ -350,6 +304,7 @@ export default function History() {
             </div>
           </div>
 
+          {/* Footer bottom bar */}
           <div className="mt-12 flex justify-between font-mono text-[10px] text-gray-600 uppercase">
             <span>
               © {new Date().getFullYear()} {DATA.name}

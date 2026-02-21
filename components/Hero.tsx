@@ -28,17 +28,8 @@ export default function Hero() {
 
   return (
     <section className="relative flex min-h-dvh flex-col justify-center px-6 md:px-12 lg:px-24 overflow-hidden">
-      <div
-        className="pointer-events-none absolute inset-0 z-0"
-        style={{
-          backgroundImage: isDark
-            ? "linear-gradient(rgba(0,229,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,229,255,0.04) 1px, transparent 1px)"
-            : "linear-gradient(rgba(184,149,42,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(184,149,42,0.08) 1px, transparent 1px), linear-gradient(rgba(26,107,74,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(26,107,74,0.04) 1px, transparent 1px)",
-          backgroundSize: isDark
-            ? "40px 40px"
-            : "60px 60px, 60px 60px, 120px 120px, 120px 120px",
-        }}
-      />
+      <div className="mcu-grid-bg pointer-events-none absolute inset-0 z-0" />
+      <div className="mcu-hex-bg pointer-events-none absolute inset-0 z-0" />
 
       {!isDark && (
         <div
@@ -49,21 +40,15 @@ export default function Hero() {
           }}
         />
       )}
-
       {isDark && (
         <>
+          <div className="at-field-overlay pointer-events-none absolute inset-0 z-0" />
+          <div className="gits-surface pointer-events-none absolute inset-0 z-0" />
           <div
             className="pointer-events-none absolute inset-0 z-0"
             style={{
               background:
                 "radial-gradient(ellipse 50% 40% at 80% 60%, rgba(230,57,70,0.08) 0%, transparent 70%)",
-            }}
-          />
-          <div
-            className="pointer-events-none absolute inset-0 z-0"
-            style={{
-              background:
-                "radial-gradient(ellipse 40% 40% at 10% 30%, rgba(0,229,255,0.06) 0%, transparent 60%)",
             }}
           />
         </>
@@ -123,8 +108,8 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="mt-6 max-w-2xl text-xl md:text-3xl"
-            style={{ color: "var(--muted)" }}
+            className={`mt-6 max-w-2xl text-xl md:text-3xl ${isDark ? "neon-text" : ""}`}
+            style={isDark ? {} : { color: "var(--muted)" }}
           >
             <span style={{ color: "var(--primary)" }}>{DATA.role}</span>{" "}
             {isDark
@@ -144,19 +129,25 @@ export default function Hero() {
           >
             <a
               href="#projects"
-              className="group relative overflow-hidden px-8 py-3 text-sm font-bold transition-all duration-300"
-              style={{
-                background: "var(--foreground)",
-                color: "var(--background)",
-              }}
+              className={`group relative overflow-hidden px-8 py-3 text-sm font-bold transition-all duration-300 ${!isDark ? "mcu-btn-primary" : ""}`}
+              style={
+                isDark
+                  ? {
+                      background: "var(--foreground)",
+                      color: "var(--background)",
+                    }
+                  : {}
+              }
             >
               <span className="relative z-10">
                 {isDark ? "// VIEW_PROJECTS" : "VIEW PROJECTS"}
               </span>
-              <div
-                className="absolute inset-0 z-0 translate-y-full transition-transform duration-300 group-hover:translate-y-0"
-                style={{ background: "var(--primary)" }}
-              />
+              {isDark && (
+                <div
+                  className="absolute inset-0 z-0 translate-y-full transition-transform duration-300 group-hover:translate-y-0"
+                  style={{ background: "var(--primary)" }}
+                />
+              )}
             </a>
 
             <a
@@ -180,6 +171,7 @@ export default function Hero() {
           transition={{ duration: 1, delay: 0.6 }}
           className="relative hidden h-full min-h-125 w-full items-center justify-end lg:flex lg:translate-x-16 order-1 lg:order-2"
         >
+          {/* Cross-hair lines */}
           <div
             className="absolute h-full w-px"
             style={{
@@ -205,7 +197,7 @@ export default function Hero() {
           <motion.div
             animate={{ rotate: -360 }}
             transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-            className="orbit-ring absolute size-100 rounded-full border"
+            className="orbit-ring orbit-reverse absolute size-100 rounded-full border"
           >
             <div className="orbit-dash absolute top-1/2 left-0 h-6 w-1 -translate-y-1/2 -translate-x-1/2" />
             <div className="orbit-planet-2 absolute top-1/2 right-0 h-4 w-4 -translate-y-1/2 translate-x-1/2 rounded-full" />
@@ -214,18 +206,17 @@ export default function Hero() {
           <motion.div
             animate={{ rotate: 360 }}
             transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-            className="orbit-ring-solid absolute size-77.5 rounded-full border animate-pulse"
+            className="orbit-ring-solid orbit absolute size-77.5 rounded-full border animate-pulse"
           />
 
-          <div className="hero-center-node absolute z-10 flex flex-col items-center justify-center rounded-full p-8 min-w-55 min-h-55">
+          <div className="hero-center-node border-glow-pulse absolute z-10 flex flex-col items-center justify-center rounded-full p-8 min-w-55 min-h-55">
             <div
               className="mb-2 h-3 w-3 animate-pulse rounded-full"
               style={{
                 background: "var(--primary)",
-                boxShadow: `0 0 10px var(--primary)`,
+                boxShadow: "0 0 10px var(--primary)",
               }}
             />
-
             <span
               className="font-mono text-xs font-bold tracking-widest"
               style={{ color: "var(--muted)" }}
@@ -238,7 +229,6 @@ export default function Hero() {
                   ? "BASE_SIGNAL_ACTIVE"
                   : "STARK TOWER UPLINK"}
             </span>
-
             <span
               className="mt-1 font-mono text-xl font-bold"
               style={{ color: "var(--foreground)" }}
@@ -251,7 +241,6 @@ export default function Hero() {
             >
               {coords.lng}° E
             </span>
-
             <span
               className="mt-2 text-xs font-bold tracking-tighter font-mono"
               style={{ color: "var(--primary)" }}
