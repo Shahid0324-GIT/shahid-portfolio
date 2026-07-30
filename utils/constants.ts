@@ -21,6 +21,7 @@ import {
   SiClaude,
   SiGooglegemini,
   SiWebstorm,
+  SiSharp,
 } from "react-icons/si";
 
 const calculateExperience = (startDate: Date) => {
@@ -50,6 +51,7 @@ export const SOCIALS = {
 export const SKILLS = {
   languages: [
     "JavaScript (ES6+)",
+    "C#",
     "TypeScript",
     "Python",
     "SQL",
@@ -57,14 +59,23 @@ export const SKILLS = {
     "CSS3",
   ],
   frontend: [
-    "Next.js 16",
+    "Next.js",
     "React.js",
+    "Vue.js",
+    "Nuxt.js",
     "Tailwind CSS",
     "Redux",
     "Zustand",
     "TanStack Query",
   ],
-  backend: ["Node.js", "FastAPI (Python)", "Express.js", "WebSockets"],
+  backend: [
+    "Node.js",
+    "FastAPI (Python)",
+    "Express.js",
+    "WebSockets",
+    "ASP.NET Core",
+    "NestJS",
+  ],
   database: [
     "PostgreSQL",
     "MongoDB",
@@ -257,15 +268,16 @@ export const words = [
 ];
 const skills = [
   { name: "TypeScript", icon: SiTypescript },
-  { name: "Node.js", icon: SiNodedotjs },
-  { name: "React", icon: SiReact },
+  { name: "C#", icon: SiSharp },
+  { name: "Python", icon: SiPython },
   { name: "Next.js", icon: SiNextdotjs },
+  { name: "React", icon: SiReact },
   { name: "Vue.js", icon: SiVuedotjs },
   { name: "Nuxt", icon: SiNuxtdotjs },
-  { name: "Python", icon: SiPython },
+  { name: "Tailwind", icon: SiTailwindcss },
+  { name: "Node.js", icon: SiNodedotjs },
   { name: "Django", icon: SiDjango },
   { name: "FastAPI", icon: SiFastapi },
-  { name: "Tailwind", icon: SiTailwindcss },
   { name: "PostgreSQL", icon: SiPostgresql },
   { name: "MongoDB", icon: SiMongodb },
   { name: "Redis", icon: SiRedis },
