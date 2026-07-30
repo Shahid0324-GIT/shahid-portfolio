@@ -85,17 +85,33 @@ export const SKILLS = {
 
 export const WORK = [
   {
+    id: "propertyloop",
+    role: "Software Engineer",
+    company: "PropertyLoop/ QuantumLoopAI",
+    period: "Apr 2026 – Present",
+    type: "Remote",
+    description:
+      "Building AI-powered healthcare and property technology platforms with React, Next.js, NestJS, Prisma, Azure Functions, and PostgreSQL.",
+    achievements: [
+      "Designed and implemented the NINA & SOFIA chatbot feedback system end-to-end.",
+      "Built Azure Functions for automated orphaned feedback reconciliation and Slack notifications.",
+      "Optimized complex Prisma/SQL queries for production-scale datasets with millions of records.",
+      "Delivered full-stack features across React, Next.js, NestJS, Prisma, and Azure while collaborating with product and QA teams.",
+    ],
+  },
+  {
     id: "codseg",
     role: "Fullstack Developer",
     company: "Codseg & Paradigm Shift AI",
     period: "Jan 2024 – Jan 2026",
     type: "Remote",
-    description: "Architecting responsive web apps and optimizing performance.",
+    description:
+      "Developed and maintained scalable full-stack web applications with a focus on performance, security, and user experience.",
     achievements: [
-      "Reduced initial load times by 40% using aggressive code splitting.",
-      "Ensured sub-second response times for complex analytics dashboards.",
-      "Implemented RBAC and robust error handling boundaries.",
-      "Achieved 95+ Lighthouse scores by refactoring heavy component trees.",
+      "Reduced initial load times by 40% through code splitting and bundle optimization.",
+      "Implemented RBAC, authentication, and robust error handling across multiple applications.",
+      "Optimized complex dashboards to achieve sub-second response times.",
+      "Improved application performance, consistently achieving Lighthouse scores above 95.",
     ],
   },
   {
@@ -104,10 +120,11 @@ export const WORK = [
     company: "NxtWave Disruptive Technologies",
     period: "Jul 2023 – Jan 2024",
     type: "Remote",
-    description: "Mentoring students in full-stack concepts.",
+    description:
+      "Mentored aspiring developers in full-stack web development and software engineering fundamentals.",
     achievements: [
-      "Mentored 300+ students in React.js and REST APIs.",
-      "Debugged 500+ student codebases to identify anti-patterns.",
+      "Mentored over 300 students in React.js, JavaScript, and REST APIs.",
+      "Debugged more than 500 student projects, helping identify and resolve architectural and coding issues.",
     ],
   },
 ];
