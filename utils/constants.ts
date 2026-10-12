@@ -99,10 +99,10 @@ export const WORK = [
     id: "propertyloop",
     role: "Software Engineer",
     company: "PropertyLoop/ QuantumLoopAI",
-    period: "Apr 2026 – Present",
+    period: "Apr 2026 – Sep 2026",
     type: "Remote",
     description:
-      "Building AI-powered healthcare and property technology platforms with React, Next.js, NestJS, Prisma, Azure Functions, and PostgreSQL.",
+      "Built AI-powered healthcare and property technology platforms with React, Next.js, NestJS, Prisma, Azure Functions, and PostgreSQL.",
     achievements: [
       "Designed and implemented the NINA & SOFIA chatbot feedback system end-to-end.",
       "Built Azure Functions for automated orphaned feedback reconciliation and Slack notifications.",

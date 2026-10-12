@@ -3,14 +3,17 @@ import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import HeaderClient from "@/components/Header";
+import SmoothScroll from "@/components/SmoothScroll";
+import "lenis/dist/lenis.css";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
-const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono" });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jetbrains-mono" });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://shahid-portfolio-coral.vercel.app"),
   title: "Mohammed Jameel Shahid | Fullstack Engineer",
   description:
-    "Minimalist portfolio of Mohammed Jameel Shahid. Specialized in Next.js, Python (FastAPI), and High-Performance Web Systems.",
+    "Fullstack engineer building thoughtful interfaces, AI-powered platforms, and reliable systems with Next.js and Python.",
   generator: "Next.js",
   keywords: [
     "Next.js",
@@ -28,14 +31,7 @@ export const metadata: Metadata = {
       "Building minimalist, high-performance web systems with Next.js & Python.",
     url: "https://shahid-portfolio-coral.vercel.app",
     siteName: "Mohammed Jameel Shahid Portfolio",
-    images: [
-      {
-        url: "https://ogcdn.net/ef977abe-2472-4850-a352-f4a7ad6508f6/v2/https%3A%2F%2Fopengraph.b-cdn.net%2Fproduction%2Fimages%2Fa8069d90-7c0b-4dac-9a8b-2f3e77c77c77.png%3Ftoken%3DAdF9NiqKDkeD_s1rqIW4wh_FrfQK-RI088G_zo6bbyA%26height%3D483%26width%3D1200%26expires%3D33304722156/og.png",
-        width: 1200,
-        height: 630,
-        alt: "Mohammed Jameel Shahid - Frontend Engineer Portfolio",
-      },
-    ],
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Mohammed Jameel Shahid — Code & Craft" }],
     locale: "en_US",
     type: "website",
   },
@@ -44,9 +40,7 @@ export const metadata: Metadata = {
     title: "Mohammed Jameel Shahid | Fullstack Engineer",
     description:
       "Building minimalist, high-performance web systems with Next.js & Python.",
-    images: [
-      "https://ogcdn.net/ef977abe-2472-4850-a352-f4a7ad6508f6/v2/https%3A%2F%2Fopengraph.b-cdn.net%2Fproduction%2Fimages%2Fa8069d90-7c0b-4dac-9a8b-2f3e77c77c77.png%3Ftoken%3DAdF9NiqKDkeD_s1rqIW4wh_FrfQK-RI088G_zo6bbyA%26height%3D483%26width%3D1200%26expires%3D33304722156/og.png",
-    ],
+    images: ["/opengraph-image"],
   },
   icons: {
     icon: [
@@ -77,7 +71,9 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${mono.variable} font-sans antialiased`}
       >
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+          <SmoothScroll />
+          <a href="#top" className="skip-link">Skip to content</a>
           <HeaderClient />
           {children}
         </ThemeProvider>

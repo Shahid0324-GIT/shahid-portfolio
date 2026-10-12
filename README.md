@@ -1,117 +1,48 @@
-# Mohammed Jameel Shahid | Portfolio 2026
+# Mohammed Jameel Shahid — Portfolio
 
-> A high-performance, engineering-first portfolio built with **Next.js 16**, **Bun**, and **Tailwind CSS v4**. Features a dual cinematic theme system — **MCU (Loki/Iron Man)** in light mode and **Anime (NGE × Ghost in the Shell × Demon Slayer)** in dark mode — with a sticky horizontal scroll, tri-lingual system boot sequence, and a dynamic geolocation HUD.
+A personal fullstack engineering portfolio built with Next.js 16, React 19, TypeScript, and Tailwind CSS 4.
 
-![Project Banner](./public/landing.png)
+The design combines a warm editorial light theme with a restrained cyan-accented dark theme. Original CSS illustrations, real project screenshots, and individual project pages tell the story behind the work.
 
-## Tech Stack
+## Run locally
 
-| Layer     | Technology                                                               |
-| --------- | ------------------------------------------------------------------------ |
-| Runtime   | [Bun](https://bun.sh)                                                    |
-| Framework | [Next.js 16](https://nextjs.org) (App Router)                            |
-| Styling   | [Tailwind CSS v4](https://tailwindcss.com) (CSS Variables, No Config)    |
-| Animation | [Framer Motion](https://www.framer.com/motion/)                          |
-| Icons     | [React Icons](https://react-icons.github.io/react-icons/) (Simple Icons) |
-| Fonts     | Inter + JetBrains Mono (via `next/font`)                                 |
+Dependencies are installed with Bun:
 
-## Features
-
-- **Dual Cinematic Theme System**
-  - **Light Mode — MCU:** Asgardian parchment, Loki gold, Iron Man arc reactor blue. Subtle rune-grid backgrounds, gold shimmer card hovers, Stark HUD orbital display.
-  - **Dark Mode — Anime:** NGE void black, Ghost in the Shell cyan, Demon Slayer crimson. Scanline overlay, AT Field hex patterns, neon glow text, flame pulse animations.
-- **System Boot Loader:** Cinematic tri-lingual (EN/JP/AR) loading sequence with corner bracket frames and a themed progress bar.
-- **Sticky Horizontal Scroll:** Project showcase that transforms vertical scrolling into horizontal panning via Framer Motion.
-- **Ghost Tech Marquee:** Infinite scrolling tech stack with theme-aware icon glow on hover — gold shimmer in light, cyan neon in dark.
-- **Dynamic Geolocation HUD:** Hero section detects real coordinates or falls back to base location; styled as a Stark/NERV targeting display.
-- **Bilingual Header:** Name glitch effect cycling between English, Japanese (Katakana), and Arabic with responsive mobile initials fallback.
-- **Hydration-Safe Theming:** Custom `useIsDark` hook centralises the `next-themes` mounted guard, preventing SSR/client mismatches across all components.
-
-## Getting Started
-
-This project uses **Bun**. Make sure it's installed before proceeding.
-
-```bash
-# Install dependencies
+```sh
 bun install
-
-# Start the development server
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to see the result.
+Open the local URL printed by Next.js. Production checks:
 
-## Project Structure
-
-```path
-
-src/
-├── app/
-│   ├── globals.css         # Tailwind v4 theme variables (MCU + Anime palettes)
-│   ├── layout.tsx          # Root layout with Header & ThemeProvider
-│   └── page.tsx            # Entry: Preloader → Hero → Marquee → Projects → History
-├── components/
-│   ├── Header.tsx          # Fixed nav with glitch name, status badge, theme toggle
-│   ├── Hero.tsx            # Orbital HUD with geolocation display
-│   ├── History.tsx         # Work timeline + contact footer
-│   ├── Preloader.tsx       # Boot sequence loading screen
-│   ├── Projects.tsx        # Horizontal scroll project showcase
-│   ├── TechMarquee.tsx     # Infinite tech logo loop
-│   └── ThemeToggle.tsx     # MCU ✦ / NGE ⚡ theme switch
-├── hooks/
-│   └── useIsDark.ts        # Hydration-safe theme hook (use this everywhere)
-└── utils/
-    └── constants.ts        # Single source of truth — update all content here
+```sh
+bun run build
+bun run lint
 ```
 
-## Customization
+## Content and structure
 
-### 1. Update Your Content
+- `utils/constants.ts`: personal details, social links, work history, and project links.
+- `utils/project-details.ts`: project narratives, preview images, categories, and source-link availability.
+- `app/page.tsx`: hero, about, technologies, selected work, experience, and contact.
+- `app/work/[slug]/page.tsx`: statically generated project pages.
+- `app/globals.css`: shared design tokens, light/dark themes, responsive styles, and reduced-motion handling.
+- `app/opengraph-image.tsx`: generated PNG for social sharing.
+- `public/projects/`: project screenshots and image provenance notes.
+- `public/resume.pdf`: the owner's existing resume.
 
-Everything personal lives in `src/utils/constants.ts`. Name, role, links, work history, and projects all live here — the site updates automatically.
+## Project previews
 
-```typescript
-export const DATA = {
-  name: "Mohammed Jameel Shahid",
-  role: "Fullstack Engineer",
-  location: "Telangana, India",
-  email: "moshahid0324@gmail.com",
-};
-```
+Freelance Flow, Handyman, and Pastebin Lite use captures of their public websites. GitPulse and Reverse ATS use original concept illustrations, visibly labeled as illustrations.
 
-### 2. Change the Theme Colors
+The Reverse ATS source URL in the original project data returned a public GitHub 404 during the review. Its source button is hidden via `sourceAvailable: false`; the original URL is retained for the owner to update. Projects without a public demo do not display a demo button.
 
-The entire palette is in `src/app/globals.css` via CSS variables. Swap any hex to change the accent instantly.
+To update an image, replace the file in `public/projects/` and update its descriptive alt text in `utils/project-details.ts`.
 
-```css
-/* Light Mode — MCU (Loki/Iron Man) */
-:root {
-  --background: #f7f4ee; /* Asgardian parchment */
-  --primary: #b8952a; /* Loki gold */
-  --accent: #1a6b4a; /* Loki emerald */
-}
+## Accessibility and performance
 
-/* Dark Mode — Anime (NGE × GITS × Demon Slayer) */
-.dark {
-  --background: #06060a; /* NGE void */
-  --primary: #00e5ff; /* Ghost in the Shell cyan */
-  --accent: #e63946; /* Demon Slayer crimson */
-}
-```
+Main content is rendered immediately, with no blocking preloader or visitor-location request. Navigation includes a skip link, keyboard focus states, a mobile menu, and theme controls. Experience highlights use native disclosure elements. Lenis smooths page scrolling and same-page section links, while native touch scrolling is preserved. Reduced-motion preferences disable scroll smoothing and transitions.
 
-### 3. Add a New Component with Theme Support
+Project images use Next.js image optimization. The homepage and five project pages are prerendered.
 
-Use the `useIsDark` hook instead of `useTheme` directly — it handles the SSR mounted guard for you:
-
-```typescript
-import { useIsDark } from "@/hooks/useIsDark";
-
-export default function MyComponent() {
-  const isDark = useIsDark();
-  // Safe to branch on isDark immediately — no hydration errors
-}
-```
-
-## License
-
-MIT © [Mohammed Jameel Shahid](https://github.com/Shahid0324-GIT)
+MIT © Mohammed Jameel Shahid

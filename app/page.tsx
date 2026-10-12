@@ -1,29 +1,10 @@
-"use client";
-import { useState } from "react";
-import Preloader from "@/components/Preloader";
-import TechMarquee from "@/components/TechMarquee";
 import Hero from "@/components/Hero";
+import About from "@/components/About";
+import TechMarquee from "@/components/TechMarquee";
 import Projects from "@/components/Projects";
 import History from "@/components/History";
+import Contact from "@/components/Contact";
 
 export default function Home() {
-  const [loading, setLoading] = useState(true);
-
-  return (
-    <main className="relative min-h-screen w-full selection:bg-primary selection:text-black">
-      <Preloader onComplete={() => setLoading(false)} />
-
-      {!loading && (
-        <div className="animate-in fade-in zoom-in-95 duration-1000">
-          <Hero />
-
-          <TechMarquee />
-
-          <Projects />
-
-          <History />
-        </div>
-      )}
-    </main>
-  );
+  return <main id="top"><Hero /><About /><TechMarquee /><Projects /><History /><Contact /></main>;
 }
