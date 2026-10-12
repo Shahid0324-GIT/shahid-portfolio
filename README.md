@@ -4,6 +4,8 @@ A personal fullstack engineering portfolio built with Next.js 16, React 19, Type
 
 The design combines a warm editorial light theme with a restrained cyan-accented dark theme. Original CSS illustrations, real project screenshots, and individual project pages tell the story behind the work.
 
+A brief welcome screen cycles the owner's name through English, Arabic, and Japanese once per tab session. The skills showcase contains every previously listed skill across seven selectable categories, with optional automatic fading transitions. A faint traveling wave, section entrances, and active navigation add motion without obscuring the content. The hero objects stay still, and the mobile menu fills the screen while small canvas particles assemble into the navigation labels. No particle library is required.
+
 ## Run locally
 
 Dependencies are installed with Bun:
@@ -24,6 +26,7 @@ bun run lint
 
 - `utils/constants.ts`: personal details, social links, work history, and project links.
 - `utils/project-details.ts`: project narratives, preview images, categories, and source-link availability.
+- `utils/skill-groups.ts`: complete categorized skills; existing icon definitions are shared from `utils/constants.ts`.
 - `app/page.tsx`: hero, about, technologies, selected work, experience, and contact.
 - `app/work/[slug]/page.tsx`: statically generated project pages.
 - `app/globals.css`: shared design tokens, light/dark themes, responsive styles, and reduced-motion handling.

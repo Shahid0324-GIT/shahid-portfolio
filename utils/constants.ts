@@ -266,7 +266,7 @@ export const words = [
     ar: "تم السماح بالدخول",
   },
 ];
-const skills = [
+export const TECH_SKILLS = [
   { name: "TypeScript", icon: SiTypescript },
   { name: "C#", icon: SiSharp },
   { name: "Python", icon: SiPython },
@@ -292,4 +292,4 @@ const skills = [
   { name: "Webstorm", icon: SiWebstorm },
 ];
 
-export const marqueeContent = [...skills, ...skills, ...skills];
+export const marqueeContent = [...TECH_SKILLS, ...TECH_SKILLS, ...TECH_SKILLS];
