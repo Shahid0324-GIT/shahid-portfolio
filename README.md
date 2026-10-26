@@ -24,10 +24,13 @@ bun run lint
 
 ## Content and structure
 
+The navbar switches between the full portfolio and a shareable `/resume` view. Resume view uses the same work history, skills, project links, and contact data, displayed in a static, grid-based document layout with native scrolling. It includes the PDF download and print-friendly styles.
+
 - `utils/constants.ts`: personal details, social links, work history, and project links.
 - `utils/project-details.ts`: project narratives, preview images, categories, and source-link availability.
 - `utils/skill-groups.ts`: complete categorized skills; existing icon definitions are shared from `utils/constants.ts`.
 - `app/page.tsx`: hero, about, technologies, selected work, experience, and contact.
+- `app/resume/page.tsx`: simplified professional overview for recruiters.
 - `app/work/[slug]/page.tsx`: statically generated project pages.
 - `app/globals.css`: shared design tokens, light/dark themes, responsive styles, and reduced-motion handling.
 - `app/opengraph-image.tsx`: generated PNG for social sharing.

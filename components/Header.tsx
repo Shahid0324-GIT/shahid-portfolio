@@ -7,12 +7,17 @@ import { Menu, X, ArrowUpRight } from "lucide-react";
 import ThemeToggle from "@/components/ThemeToggle";
 import { SOCIALS } from "@/utils/constants";
 import ParticleLabel from "@/components/ParticleLabel";
-const navigation = [["About", "about"], ["Work", "projects"], ["Experience", "experience"], ["Contact", "contact"]];
+import ViewSwitch from "@/components/ViewSwitch";
+const portfolioNavigation = [["About", "about"], ["Work", "projects"], ["Experience", "experience"], ["Contact", "contact"]];
+const resumeNavigation = [["Overview", "summary"], ["Experience", "experience"], ["Stack", "skills"], ["Contact", "contact"]];
 
 export default function Header() {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState("");
   const pathname = usePathname();
+  const isResume = pathname === "/resume";
+  const navigation = isResume ? resumeNavigation : portfolioNavigation;
+  const sectionPath = isResume ? "/resume#" : "/#";
   const menuRef = useRef<HTMLDivElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   useEffect(() => {
@@ -45,7 +50,7 @@ export default function Header() {
     let frame = 0;
     const update = () => {
       let current = "";
-      if (pathname === "/") {
+      if (pathname === "/" || isResume) {
         navigation.forEach(([, id]) => {
           const section = document.getElementById(id);
           if (section && section.getBoundingClientRect().top <= innerHeight * .3) current = id;
@@ -58,14 +63,14 @@ export default function Header() {
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
     return () => { cancelAnimationFrame(frame); window.removeEventListener("scroll", onScroll); window.removeEventListener("resize", onScroll); };
-  }, [pathname]);
+  }, [pathname, isResume, navigation]);
   return <header className="site-header">
     <Link href="/" className="wordmark" aria-label="Shahid home" onClick={() => setOpen(false)}>shahid<span>.</span></Link>
-    <nav className="desktop-nav" aria-label="Main navigation">{navigation.map(([label, id]) => <Link key={id} href={"/#" + id} aria-current={active === id ? "location" : undefined}>{label}</Link>)}</nav>
-    <div className="header-actions"><a className="resume-link" href={SOCIALS.resumePdf} target="_blank" rel="noopener noreferrer">Resume <ArrowUpRight size={14} /></a><ThemeToggle /><button className="menu-toggle" aria-label={open ? "Close navigation" : "Open navigation"} aria-expanded={open} aria-controls="mobile-nav" onClick={() => setOpen(!open)}>{open ? <X size={21} /> : <Menu size={21} />}</button></div>
+    <nav className="desktop-nav" aria-label="Main navigation">{navigation.map(([label, id]) => <Link key={id} href={sectionPath + id} aria-current={active === id ? "location" : undefined}>{label}</Link>)}</nav>
+    <div className="header-actions"><ViewSwitch /><a className="resume-link" href={SOCIALS.resumePdf} target="_blank" rel="noopener noreferrer" aria-label="Open PDF resume">PDF <ArrowUpRight size={14} /></a><ThemeToggle /><button className="menu-toggle" aria-label={open ? "Close navigation" : "Open navigation"} aria-expanded={open} aria-controls="mobile-nav" onClick={() => setOpen(!open)}>{open ? <X size={21} /> : <Menu size={21} />}</button></div>
     {open && createPortal(<div id="mobile-nav" className="mobile-menu-overlay" ref={menuRef} role="dialog" aria-modal="true" aria-label="Mobile navigation" data-lenis-prevent>
       <div className="mobile-menu-top"><Link href="/" className="wordmark" aria-label="Shahid home" onClick={() => setOpen(false)}>shahid<span>.</span></Link><button ref={closeRef} className="mobile-menu-close" aria-label="Close navigation" onClick={() => setOpen(false)}><X size={24} /></button></div>
-      <nav className="mobile-menu-links" aria-label="Mobile sections">{navigation.map(([label, id], index) => <Link key={id} href={"/#" + id} aria-current={active === id ? "location" : undefined} onClick={() => setOpen(false)}><span className="mobile-menu-number">0{index + 1}</span><ParticleLabel>{label}</ParticleLabel><ArrowUpRight size={30} /></Link>)}</nav>
+      <nav className="mobile-menu-links" aria-label="Mobile sections">{navigation.map(([label, id], index) => <Link key={id} href={sectionPath + id} aria-current={active === id ? "location" : undefined} onClick={() => setOpen(false)}><span className="mobile-menu-number">0{index + 1}</span>{isResume ? <span>{label}</span> : <ParticleLabel>{label}</ParticleLabel>}<ArrowUpRight size={30} /></Link>)}</nav>
       <div className="mobile-menu-bottom"><span className="eyebrow">CODE & CRAFT / TELANGANA, INDIA</span><a href={SOCIALS.resumePdf} target="_blank" rel="noopener noreferrer">View resume <ArrowUpRight size={15} /></a></div>
     </div>, document.body)}
   </header>;

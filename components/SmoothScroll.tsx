@@ -8,6 +8,8 @@ export default function SmoothScroll() {
   const pathname = usePathname();
 
   useEffect(() => {
+    // Resume view stays native and immediate for quick reading.
+    if (pathname === "/resume") return;
     const lenis = new Lenis({
       autoRaf: true,
       lerp: 0.09,
